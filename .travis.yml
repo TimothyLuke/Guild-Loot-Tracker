@@ -1,0 +1,39 @@
+language: python
+python: 2.7
+sudo: false
+env:
+- LUA="lua=5.1" LUAC="luac5.1"
+addons:
+  apt:
+    packages:
+    - liblua5.1-bitop0
+before_install:
+- pip install hererocks
+- hererocks lua_install -r^ --$LUA
+- export PATH=$PATH:$PWD/lua_install/bin
+install:
+- luarocks install luacheck
+- luarocks install mockagne 1.0
+- luarocks install luaunit
+- luarocks install luabitop
+- luarocks install busted
+- luarocks install luacov
+- luarocks install luacov-coveralls
+- luarocks install luadoc
+script:
+- luacheck --no-max-line-length --no-global --no-unused --allow-defined --std max+busted API/*.lua
+- bash ./deploy.sh
+- busted --verbose --coverage
+- mkdir .release
+after_success:
+- luacov-coveralls -r .
+#- curl -s https://raw.githubusercontent.com/BigWigsMods/packager/master/release.sh | bash; if [[ $? != 0 ]]; then TRAVIS_TEST_RESULT=1; fi
+#- curl -s https://raw.githubusercontent.com/BigWigsMods/packager/master/release.sh | bash -s -- -g 1.13.2 -m .pkgmeta -w 25155; if [[ $? != 0 ]]; then TRAVIS_TEST_RESULT=1; fi
+notifications:
+  email:
+    on_failure: always
+    on_success: change
+cache:
+  apt: true
+  directories:
+  - "$HOME/.luarocks"
