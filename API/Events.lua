@@ -1,5 +1,6 @@
 local GLTAddon, _ = ...
 local GLT = GLT
+local Statics = GLT.Static
 
 local currentclassDisplayName, currentenglishclass, currentclassId = UnitClass("player")
 local L = GLT.L
@@ -10,15 +11,22 @@ function GLT:GROUP_ROSTER_UPDATE(...)
 
 end
 
-function GSE:ADDON_LOADED(event, addon)
+function GLT:ADDON_LOADED(event, addon)
+	
 	if addon == GLTAddon then
-		print("GLT Version ", GLT.VersionString, " loaded.")
+		LibStub("AceConfig-3.0"):RegisterOptionsTable(GLTAddon, GLT.OptionsTable, {"glt"})
+		LibStub("AceConfigDialog-3.0"):AddToBlizOptions(GLTAddon, L["|cffff00FFGLT:|r Guild Loot Tracker"])	
+		if  GLT.isEmpty(GLTOptions) then
+			GLT.SetDefaultOptions()
+			
+		end
+		print(L["|cffff00FFGLT:|r Guild Loot Tracker"], "Version ", GLT.VersionString, " loaded.")
 	end
 end
 
-function GLT:CommandLine(input)
-	print("Got: ", input)
-end
+-- function GLT:CommandLine(input)
+-- 	print("Got: ", input)
+-- end
 
 function GLT:CHAT_MSG_LOOT(...) 
 	--print("Got Here")
@@ -35,12 +43,12 @@ function GLT:CHAT_MSG_LOOT(...)
     --print("itemString", itemString)
     local _, _, quality, _, _, class, subclass, _, equipSlot, texture, _, ClassID, SubClassID = GetItemInfo(itemString)
  
-    print(player, "Looted: " .. itemLink, " of ", quality)
+    print(player, "Looted: " .. itemLink, " of ", Statics.ItemQuality[quality])
 
 end 
 
 GLT:RegisterEvent("GROUP_ROSTER_UPDATE")
 GLT:RegisterEvent("CHAT_MSG_LOOT")
-GLT:RegisterChatCommand("GLT", "CommandLine")
-GSE:RegisterEvent('ADDON_LOADED')
+--GLT:RegisterChatCommand("GLT", "CommandLine")
+GLT:RegisterEvent('ADDON_LOADED')
 

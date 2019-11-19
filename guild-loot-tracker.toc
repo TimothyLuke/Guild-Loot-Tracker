@@ -4,11 +4,11 @@
 #@non-retail@
 # ## Interface: 11302
 #@end-non-retail@
-## Title: |cff0000FFGLT:|r |cFF00D1FFGuild Loot Tracker|r
+## Title: |cffff00FFGLT:|r |cFF00D1FFGuild Loot Tracker|r
 ## Notes: Syncs loot drops from raids through the guild.
 ## Author: TimothyLuke
 ## Version: @project-version@
-## SavedVariablesPerCharacter: LootHistory
+## SavedVariablesPerCharacter: LootHistory GLTOptions
 
 # ## X-WoWI-ID: 23921
 # ## X-Curse-Project-ID: 101161
@@ -37,4 +37,5 @@ Localization\ModL_zhTW.lua
 API\Init.lua
 API\Options.lua
 API\StringFunctions.lua
+API\Statics.lua
 API\Events.lua

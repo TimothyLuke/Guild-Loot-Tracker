@@ -4,6 +4,8 @@ GLT.Static = {}
 
 local Statics = GLT.Static
 
+Statics.StringReset =  "|r"
+
 Statics.ItemQuality = {
 	[0] = "Grey",
 	[1] = "White",
