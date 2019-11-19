@@ -20,9 +20,12 @@ end
 function GLT:CHAT_MSG_LOOT(...) 
 	--print("Got Here")
 	--print(...)
-	local event, lootstring, _,  _, _, player  = ... --"text", "playerName", "languageName", "channelName", "playerName2", "specialFlags", zoneChannelID, channelIndex, "channelBaseName", unused, lineID, "guid", bnSenderID, isMobile, isSubtitle, hideSenderInLetterbox, supressRaidIcons
-	--print("lootstring", lootstring)
-	--print("player", player)
+	local event, lootstring, altPlayer,  _, _, player, specialFlags, zoneChannelID, channelIndex, channelBaseName  = ... --"text", "playerName", "languageName", "channelName", "playerName2", "specialFlags", zoneChannelID, channelIndex, "channelBaseName", unused, lineID, "guid", bnSenderID, isMobile, isSubtitle, hideSenderInLetterbox, supressRaidIcons
+	print("altPlayer", altPlayer)
+	print("specialFlags", specialFlags)
+	print("zoneChannelID", zoneChannelID)
+	print("channelIndex", channelIndex)
+	print("channelBaseName", channelBaseName)
 	local itemLink = string.match(lootstring,"|%x+|Hitem:.-|h.-|h|r")
     --print("itemLink", itemLink)
     local itemString = string.match(itemLink, "item[%-?%d:]+")

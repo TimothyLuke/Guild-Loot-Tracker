@@ -3,6 +3,12 @@ GLT.L = LibStub("AceLocale-3.0"):GetLocale("GLT")
 
 GLT.VersionString = GetAddOnMetadata("GLT", "Version");
 
+--@debug@
+if GSE.VersionString == "@project-version@" then
+  GSE.VersionString = "2.4.24-18-g95ecb41"
+end
+--@end-debug@
+
 function GLT.split(source, delimiters)
   local elements = {}
   local pattern = '([^'..delimiters..']+)'
