@@ -1,13 +1,19 @@
 GLT = LibStub("AceAddon-3.0"):NewAddon("GLT", "AceConsole-3.0", "AceEvent-3.0", "AceComm-3.0", "AceSerializer-3.0", "AceTimer-3.0")
 GLT.L = LibStub("AceLocale-3.0"):GetLocale("GLT")
 
-GLT.VersionString = GetAddOnMetadata("GLT", "Version");
+GLT.VersionString = GetAddOnMetadata("guild-loot-tracker", "Version");
 
 --@debug@
-if GSE.VersionString == "@project-version@" then
-  GSE.VersionString = "2.4.24-18-g95ecb41"
+if GLT.VersionString == "@project-version@" then
+  GLT.VersionString = "1.1.24-18-g95ecb41"
 end
 --@end-debug@
+
+-- Initialisation Functions
+--- Checks for nil or empty variables.
+function GLT.isEmpty(s)
+  return s == nil or s == ''
+end
 
 function GLT.split(source, delimiters)
   local elements = {}
@@ -38,6 +44,7 @@ function GLT.ParseVersion(version)
   end
   return tonumber(returnVal)
 end
+
 
 GLT.VersionNumber = GLT.ParseVersion(GLT.VersionString)
 
