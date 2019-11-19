@@ -1,36 +1,36 @@
-local GRT = GRT
+local GLT = GLT
 
 --- Remove WoW Text Markup from a sequence.
-function GRT.UnEscapeSequence(sequence)
+function GLT.UnEscapeSequence(sequence)
 
-  local retseq = GRT.UnEscapeTable(sequence)
+  local retseq = GLT.UnEscapeTable(sequence)
   for k,v in pairs(sequence) do
     if type (k) == "string" then
       retseq[k] = v
     end
   end
-  if not GRT.isEmpty(sequence.KeyPress) then
-    retseq.KeyPress = GRT.UnEscapeTable(sequence.KeyPress)
+  if not GLT.isEmpty(sequence.KeyPress) then
+    retseq.KeyPress = GLT.UnEscapeTable(sequence.KeyPress)
   end
-  if not GRT.isEmpty(sequence.KeyRelease) then
-    retseq.KeyRelease = GRT.UnEscapeTable(sequence.KeyRelease)
+  if not GLT.isEmpty(sequence.KeyRelease) then
+    retseq.KeyRelease = GLT.UnEscapeTable(sequence.KeyRelease)
   end
-  if not GRT.isEmpty(sequence.PreMacro) then
-    retseq.PreMacro = GRT.UnEscapeTable(sequence.PreMacro)
+  if not GLT.isEmpty(sequence.PreMacro) then
+    retseq.PreMacro = GLT.UnEscapeTable(sequence.PreMacro)
   end
-  if not GRT.isEmpty(sequence.PostMacro) then
-    retseq.PostMacro = GRT.UnEscapeTable(sequence.PostMacro)
+  if not GLT.isEmpty(sequence.PostMacro) then
+    retseq.PostMacro = GLT.UnEscapeTable(sequence.PostMacro)
   end
 
   return retseq
 end
 
-function GRT.UnEscapeTable(tab)
+function GLT.UnEscapeTable(tab)
   local newtab = {}
   for k,v in ipairs(tab) do
     --print (k .. " " .. v)
-    local cleanstring = GRT.UnEscapeString(v)
-    if not GRT.isEmpty(cleanstring) then
+    local cleanstring = GLT.UnEscapeString(v)
+    if not GLT.isEmpty(cleanstring) then
       newtab[k] = cleanstring
     end
   end
@@ -38,7 +38,7 @@ function GRT.UnEscapeTable(tab)
 end
 
 --- Remove WoW Text Markup from a string.
-function GRT.UnEscapeString(str)
+function GLT.UnEscapeString(str)
 
     for k, v in pairs(Statics.StringFormatEscapes) do
         str = string.gsub(str, k, v)
@@ -47,7 +47,7 @@ function GRT.UnEscapeString(str)
 end
 
 --- Add the lines of a string as individual entries.
-function GRT.lines(tab, str)
+function GLT.lines(tab, str)
   local function helper(line)
     table.insert(tab, line)
     return ""
@@ -56,7 +56,7 @@ function GRT.lines(tab, str)
 end
 
 --- Convert a string to an array of lines.
-function GRT.SplitMeIntolines(str)
+function GLT.SplitMeIntolines(str)
   local t = {}
   local function helper(line)
     table.insert(t, line)
@@ -67,14 +67,14 @@ function GRT.SplitMeIntolines(str)
 end
 
 
-function GRT.FixQuotes(source)
+function GLT.FixQuotes(source)
   source = string.gsub(source, "%‘", "'")
   source = string.gsub(source, "%’", "'")
   source = string.gsub(source, "%”", "\"")
   return source
 end
 
-function GRT.CleanStrings(source)
+function GLT.CleanStrings(source)
   for k,v in pairs(Statics.CleanStrings) do
     if source == v then
       source = ""
@@ -85,9 +85,9 @@ function GRT.CleanStrings(source)
   return source
 end
 
-function GRT.CleanStringsArray(tabl)
+function GLT.CleanStringsArray(tabl)
   for k,v in ipairs(tabl) do
-    local tempval = GRT.CleanStrings(v)
+    local tempval = GLT.CleanStrings(v)
     if tempval == [[""]] then
       tabl[k] = nil
     else
@@ -98,7 +98,7 @@ function GRT.CleanStringsArray(tabl)
 end
 
 
-function GRT.pairsByKeys (t, f)
+function GLT.pairsByKeys (t, f)
   local a = {}
   for n in pairs(t) do table.insert(a, n) end
   table.sort(a, f)
@@ -113,7 +113,7 @@ function GRT.pairsByKeys (t, f)
 end
 
 --- This function removes any hidden characters from a string.
-function GRT.StripControlandExtendedCodes( str )
+function GLT.StripControlandExtendedCodes( str )
   local s = ""
   for i = 1, str:len() do
 	  if str:byte(i) >= 32 and str:byte(i) <= 126 then -- Space through to normal EN character
@@ -135,16 +135,16 @@ function GRT.StripControlandExtendedCodes( str )
   return s
 end
 
-function GRT.TrimWhiteSpace(str)
+function GLT.TrimWhiteSpace(str)
   return (string.gsub(str, "^%s*(.-)%s*$", "%1"))
 end
 
-function GRT.Dump(o)
+function GLT.Dump(o)
    if type(o) == 'table' then
       local s = '{ '
       for k,v in pairs(o) do
          if type(k) ~= 'number' then k = '"'..k..'"' end
-         s = s .. '['..k..'] = ' .. GRT.Dump(v) .. ','
+         s = s .. '['..k..'] = ' .. GLT.Dump(v) .. ','
       end
       return s .. '} '
    else
@@ -152,7 +152,7 @@ function GRT.Dump(o)
    end
 end
 
-function GRT.FindGlobalObject(name)
+function GLT.FindGlobalObject(name)
     local a = _G
     for key in string.gmatch(name, "([^%.]+)(%.?)") do
         if a[key] then
@@ -164,6 +164,6 @@ function GRT.FindGlobalObject(name)
     return a
 end
 
-function GRT.ObjectExists(name)
-    return type(GRT.FindGlobalObject(name)) ~= 'nil'
+function GLT.ObjectExists(name)
+    return type(GLT.FindGlobalObject(name)) ~= 'nil'
 end
