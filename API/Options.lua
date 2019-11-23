@@ -58,7 +58,7 @@ GLT.OptionsTable = {
 		            desc = L["Picks a Custom Colour for the Mod Names."],
 		            order = 101,
 		            hasAlpha = false,
-		            get = function(info) return GSE.GUIGetColour(GLTOptions.TitleColour) end,
+		            get = function(info) return GLT.GUIGetColour(GLTOptions.TitleColour) end,
 		            set = function(info, r, g, b, a)
 		              GLTOptions.TitleColour = string.format("|c%02x%02x%02x%02x", a*255 , r*255, g * 255, b*255)
 		            end,
@@ -70,7 +70,7 @@ GLT.OptionsTable = {
 		            order = 110,
 		            hasAlpha = false,
 		            get = function(info)
-		              return GSE.GUIGetColour(GLTOptions.AuthorColour)
+		              return GLT.GUIGetColour(GLTOptions.AuthorColour)
 		            end,
 		            set = function(info, r, g, b)
 		              GLTOptions.AuthorColour = string.format("|c%02x%02x%02x%02x", 255 , r*255, g * 255, b*255)
@@ -83,7 +83,7 @@ GLT.OptionsTable = {
 		            order = 120,
 		            hasAlpha = false,
 		            get = function(info)
-		              return GSE.GUIGetColour(GLTOptions.CommandColour)
+		              return GLT.GUIGetColour(GLTOptions.CommandColour)
 		            end,
 		            set = function(info, r, g, b)
 		              GLTOptions.CommandColour = string.format("|c%02x%02x%02x%02x", 255 , r*255, g * 255, b*255)
@@ -96,7 +96,7 @@ GLT.OptionsTable = {
 		            order = 130,
 		            hasAlpha = false,
 		            get = function(info)
-		              return GSE.GUIGetColour(GLTOptions.EmphasisColour)
+		              return GLT.GUIGetColour(GLTOptions.EmphasisColour)
 		            end,
 		            set = function(info, r, g, b)
 		              GLTOptions.EmphasisColour = string.format("|c%02x%02x%02x%02x", 255 , r*255, g * 255, b*255)
@@ -109,7 +109,7 @@ GLT.OptionsTable = {
 		            order = 140,
 		            hasAlpha = false,
 		            get = function(info)
-		              return GSE.GUIGetColour(GLTOptions.NormalColour)
+		              return GLT.GUIGetColour(GLTOptions.NormalColour)
 		            end,
 		            set = function(info, r, g, b)
 		              GLTOptions.NormalColour = string.format("|c%02x%02x%02x%02x", 255 , r*255, g * 255, b*255)
@@ -128,10 +128,10 @@ GLT.OptionsTable = {
 		            order = 210,
 		            hasAlpha = false,
 		            get = function(info)
-		              return GSE.GUIGetColour(GLTOptions.KEYWORD)
+		              return GLT.GUIGetColour(GLTOptions.KEYWORD)
 		            end,
 		            set = function(info, r, g, b)
-		              GSE.GUISetColour(GLTOptions.KEYWORD, r, g, b)
+		              GLT.GUISetColour(GLTOptions.KEYWORD, r, g, b)
 		            end,
 	          	},
 	          	unknownColour = {
@@ -141,10 +141,10 @@ GLT.OptionsTable = {
 		            order = 220,
 		            hasAlpha = false,
 		            get = function(info)
-		              return GSE.GUIGetColour(GLTOptions.UNKNOWN)
+		              return GLT.GUIGetColour(GLTOptions.UNKNOWN)
 		            end,
 		            set = function(info, r, g, b)
-		              GSE.GUISetColour(GLTOptions.UNKNOWN, r, g, b)
+		              GLT.GUISetColour(GLTOptions.UNKNOWN, r, g, b)
 		            end,
 	          	},
 	          	iconColour = {
@@ -154,10 +154,10 @@ GLT.OptionsTable = {
 		            order = 230,
 		            hasAlpha = false,
 		            get = function(info)
-		              return GSE.GUIGetColour(GLTOptions.CONCAT)
+		              return GLT.GUIGetColour(GLTOptions.CONCAT)
 		            end,
 		            set = function(info, r, g, b)
-		              GSE.GUISetColour(GLTOptions.CONCAT, r, g, b)
+		              GLT.GUISetColour(GLTOptions.CONCAT, r, g, b)
 		            end,
 	          	},
 	          	numberColour = {
@@ -167,10 +167,10 @@ GLT.OptionsTable = {
 		            order = 240,
 		            hasAlpha = false,
 		            get = function(info)
-		              return GSE.GUIGetColour(GLTOptions.NUMBER)
+		              return GLT.GUIGetColour(GLTOptions.NUMBER)
 		            end,
 		            set = function(info, r, g, b)
-		              GSE.GUISetColour(GLTOptions.NUMBER, r, g, b)
+		              GLT.GUISetColour(GLTOptions.NUMBER, r, g, b)
 		            end,
 	          	},
 	          	stringColour = {
@@ -181,10 +181,10 @@ GLT.OptionsTable = {
 		            order = 250,
 		            hasAlpha = false,
 		            get = function(info)
-		              return GSE.GUIGetColour(GLTOptions.STRING)
+		              return GLT.GUIGetColour(GLTOptions.STRING)
 		            end,
 		            set = function(info, r, g, b)
-		              GSE.GUISetColour(GLTOptions.STRING, r, g, b)
+		              GLT.GUISetColour(GLTOptions.STRING, r, g, b)
 		            end,
 	          	},
 	          	conditionalColour = {
@@ -194,10 +194,10 @@ GLT.OptionsTable = {
 		            order = 260,
 		            hasAlpha = false,
 		            get = function(info)
-		              return GSE.GUIGetColour(GLTOptions.COMMENT)
+		              return GLT.GUIGetColour(GLTOptions.COMMENT)
 		            end,
 		            set = function(info, r, g, b)
-		              GSE.GUISetColour(GLTOptions.COMMENT, r, g, b)
+		              GLT.GUISetColour(GLTOptions.COMMENT, r, g, b)
 		            end,
 	          	},
 	          	helpColour = {
@@ -207,10 +207,10 @@ GLT.OptionsTable = {
 		            order = 270,
 		            hasAlpha = false,
 		            get = function(info)
-		              return GSE.GUIGetColour(GLTOptions.INDENT)
+		              return GLT.GUIGetColour(GLTOptions.INDENT)
 		            end,
 		            set = function(info, r, g, b)
-		              GSE.GUISetColour(GLTOptions.INDENT, r, g, b)
+		              GLT.GUISetColour(GLTOptions.INDENT, r, g, b)
 		            end,
 	          	},
 	          	stepColour = {
@@ -220,10 +220,10 @@ GLT.OptionsTable = {
 		            order =280,
 		            hasAlpha = false,
 		            get = function(info)
-		              return GSE.GUIGetColour(GLTOptions.EQUALS)
+		              return GLT.GUIGetColour(GLTOptions.EQUALS)
 		            end,
 		            set = function(info, r, g, b)
-		              GSE.GUISetColour(GLTOptions.EQUALS, r, g, b)
+		              GLT.GUISetColour(GLTOptions.EQUALS, r, g, b)
 		            end,
 	          	},
 	          	languageColour = {
@@ -233,10 +233,10 @@ GLT.OptionsTable = {
 		            order = 290,
 		            hasAlpha = false,
 		            get = function(info)
-		              return GSE.GUIGetColour(GLTOptions.STANDARDFUNCS)
+		              return GLT.GUIGetColour(GLTOptions.STANDARDFUNCS)
 		            end,
 		            set = function(info, r, g, b)
-		              GSE.GUISetColour(GLTOptions.STANDARDFUNCS, r, g, b)
+		              GLT.GUISetColour(GLTOptions.STANDARDFUNCS, r, g, b)
 		            end,
 	          	},
 	          	shortcutsColour = {
@@ -246,10 +246,10 @@ GLT.OptionsTable = {
 		            order = 300,
 		            hasAlpha = false,
 		            get = function(info)
-		              return GSE.GUIGetColour(GLTOptions.WOWSHORTCUTS)
+		              return GLT.GUIGetColour(GLTOptions.WOWSHORTCUTS)
 		            end,
 		            set = function(info, r, g, b)
-		              GSE.GUISetColour(GLTOptions.WOWSHORTCUTS, r, g, b)
+		              GLT.GUISetColour(GLTOptions.WOWSHORTCUTS, r, g, b)
 		            end,
 	          	},
 	        },

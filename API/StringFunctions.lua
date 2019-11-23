@@ -139,16 +139,16 @@ function GLT.TrimWhiteSpace(str)
   return (string.gsub(str, "^%s*(.-)%s*$", "%1"))
 end
 
-function GLT.Dump(o)
-   if type(o) == 'table' then
+function GLT.Dump(obj)
+   if type(obj) == 'table' then
       local s = '{ '
-      for k,v in pairs(o) do
+      for k,v in pairs(obj) do
          if type(k) ~= 'number' then k = '"'..k..'"' end
          s = s .. '['..k..'] = ' .. GLT.Dump(v) .. ','
       end
       return s .. '} '
    else
-      return tostring(o)
+      return tostring(obj)
    end
 end
 
@@ -166,4 +166,13 @@ end
 
 function GLT.ObjectExists(name)
     return type(GLT.FindGlobalObject(name)) ~= 'nil'
+end
+
+function GLT.GUIGetColour(option)
+  hex = string.gsub(option, "#","")
+  return tonumber("0x".. string.sub(option,5,6))/255, tonumber("0x"..string.sub(option,7,8))/255, tonumber("0x"..string.sub(option,9,10))/255
+end
+
+function  GLT.GUISetColour(option, r, g, b)
+  option = string.format("|c%02x%02x%02x%02x", 255 , r*255, g*255, b*255)
 end

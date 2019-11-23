@@ -42,13 +42,32 @@ function GLT:CHAT_MSG_LOOT(...)
     local itemString = string.match(itemLink, "item[%-?%d:]+")
     --print("itemString", itemString)
     local _, _, quality, _, _, class, subclass, _, equipSlot, texture, _, ClassID, SubClassID = GetItemInfo(itemString)
- 
-    print(player, "Looted: " .. itemLink, " of ", Statics.ItemQuality[quality])
-
+ 	if string.len(player) >= 1 then
+    	print(player, "Looted: " .. itemLink, " of ", Statics.ItemQuality[quality])
+    	print(...)
+    end
 end 
+
+function GLT:COMBAT_LOG_EVENT_UNFILTERED(...)
+	--print(CombatLogGetCurrentEventInfo())
+
+	local timestamp, combatEvent, _, _, _, _, _, destGUID, destName, _, _, spellID = CombatLogGetCurrentEventInfo();
+
+	if combatEvent == "UNIT_DIED" then
+		--print(CombatLogGetCurrentEventInfo())
+        local englishBossName, bossID;
+        local localBossName = destName;
+        local unitType, _, _, instanceID, zoneID, ID = strsplit("-", destGUID); --[Unit type]-0-[server ID]-[instance ID]-[zone UID]-[ID]-[Spawn UID]
+        if (unitType == "Creature") or (unitType == "Vehicle") then
+            bossID = tonumber(ID);
+        end
+        print(destGUID, englishBossName, destName, bossID);
+        
+    end    
+end
 
 GLT:RegisterEvent("GROUP_ROSTER_UPDATE")
 GLT:RegisterEvent("CHAT_MSG_LOOT")
 --GLT:RegisterChatCommand("GLT", "CommandLine")
 GLT:RegisterEvent('ADDON_LOADED')
-
+GLT:RegisterEvent('COMBAT_LOG_EVENT_UNFILTERED')
