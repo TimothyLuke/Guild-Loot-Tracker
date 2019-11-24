@@ -44,7 +44,7 @@ function GLT:CHAT_MSG_LOOT(...)
     local _, _, quality, _, _, class, subclass, _, equipSlot, texture, _, ClassID, SubClassID = GetItemInfo(itemString)
  	if string.len(player) >= 1 then
     	print(player, "Looted: " .. itemLink, " of ", Statics.ItemQuality[quality])
-    	print(...)
+    	--print(...)
     end
 end 
 
@@ -55,13 +55,13 @@ function GLT:COMBAT_LOG_EVENT_UNFILTERED(...)
 
 	if combatEvent == "UNIT_DIED" then
 		--print(CombatLogGetCurrentEventInfo())
-        local englishBossName, bossID;
+        local bossID;
         local localBossName = destName;
         local unitType, _, _, instanceID, zoneID, ID = strsplit("-", destGUID); --[Unit type]-0-[server ID]-[instance ID]-[zone UID]-[ID]-[Spawn UID]
         if (unitType == "Creature") or (unitType == "Vehicle") then
             bossID = tonumber(ID);
         end
-        print(destGUID, englishBossName, destName, bossID);
+        print(destGUID, destName, bossID);
         
     end    
 end
