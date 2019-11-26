@@ -16,14 +16,14 @@ Statics.ItemQuality = {
 }
 
 Statics.RaidZones = {
-	[409] = true, -- Molten Core
     [249] = true, -- Onyxia's Lair
+	[409] = true, -- Molten Core
 	[469] = true, -- Blackwing Lair
-	-- Need ZG's Zone 
-    [509] = true, -- Ruins of Ahn'Qiraj
+	[509] = true, -- Ruins of Ahn'Qiraj
     [531] = true, -- Temple of Ahn'Qiraj
    	[533] = true, -- Naxxramas 
-	
+	-- Need ZG's Zone 
+    [859] = true, -- Guessing
 }
 
 Statics.Encounters = {

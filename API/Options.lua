@@ -325,14 +325,14 @@ GLT.OptionsTable = {
 		            get = function(info) return GLTOptions.sendDebugOutputToChatWindow  end,
 		            order = 21
 	          	},
-	          -- sendDebugOutputToDebugOutput={
-	          --   name = L["Store Debug Messages"],
-	          --   desc = L["Store output of debug messages in a Global Variable that can be referrenced by other mods."],
-	          --   type = "toggle",
-	          --   set = function(info,val) GLTOptions.sendDebugOutputToDebugOutput = val end,
-	          --   get = function(info) return GLTOptions.sendDebugOutputToDebugOutput end,
-	          --   order = 25
-	          -- },
+	          checkZone={
+	            name = "CheckZone",
+	            desc = "Print out zone Information",
+	            --guiHidden = true,
+	            type = "execute",
+	            func = function(info) print(GLT.checkInstance()) end,
+	            order = 25
+	          },
 	          -- printKeyPressModifiers={
 	          --   name = L["Print KeyPress Modifiers on Click"],
 	          --   desc = L["Print to the chat window if the alt, shift, control modifiers as well as the button pressed on each macro keypress."],
