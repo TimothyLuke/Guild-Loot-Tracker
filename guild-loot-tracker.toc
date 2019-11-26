@@ -40,3 +40,4 @@ API\StringFunctions.lua
 API\Statics.lua
 API\Storage.lua
 API\Events.lua
+API\GUI.lua
