@@ -21,6 +21,9 @@ function GLT:ADDON_LOADED(event, addon)
 			
 		end
 		print(L["|cffff00FFGLT:|r Guild Loot Tracker"], "Version ", GLT.VersionString, " loaded.")
+		if GLT.isEmpty(LootHistory) then
+			LootHistory = {}
+		end
 	end
 end
 
@@ -44,7 +47,7 @@ function GLT:CHAT_MSG_LOOT(...)
     local _, _, quality, _, _, class, subclass, _, equipSlot, texture, _, ClassID, SubClassID = GetItemInfo(itemString)
  	if string.len(player) >= 1 then
     	local isRaid, instanceMapID, _ = GLT.checkInstance()
-    	if isRaid then
+    	if isRaid and quality > 1 then
     		GLT.logLootDrop(player, itemLink, quality, instanceMapID, GLT.lastBoss)
     		print(player, "Looted: " .. itemLink, " of ", Statics.ItemQuality[quality])
     	end
@@ -65,7 +68,7 @@ function GLT:COMBAT_LOG_EVENT_UNFILTERED(...)
         if (unitType == "Creature") or (unitType == "Vehicle") then
             bossID = tonumber(ID);
         end
-        print(destGUID, destName, bossID);
+        -- print(destGUID, destName, bossID);
         
         GLT.lastBoss = bossID
 
