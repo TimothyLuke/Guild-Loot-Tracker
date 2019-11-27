@@ -3,7 +3,7 @@ describe('API StringFunctions', function()
 
     require("../spec/mockGLT")
     require("../API/Statics")
-    require("../API/InitialOptions")
+    require("../API/Options")
     require("../API/StringFunctions")
 
   end)
