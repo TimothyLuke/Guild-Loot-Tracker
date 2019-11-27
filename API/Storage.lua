@@ -6,9 +6,9 @@ function GLT.logLootDrop(player, itemLink, quality, instanceID, bossID)
 	local lootRecord = {
 		["timestamp"] = GetServerTime(),
 		["instanceID"] = instanceID,
-		["player"] = player, 
-		["itemLink"] = itemLink, 
-		["quality"] = quality, 
+		["player"] = player,
+		["itemLink"] = itemLink,
+		["quality"] = quality,
 		["bossID"] = bossID
 	}
 

@@ -35,27 +35,27 @@ GLT.OptionsTable = {
 	        type = "group",
 	        order = 1,
 	        args = {
-	          	title1 = {
+				title1 = {
 		            type = "header",
 		            name = L["General Options"],
 		            order = 100
-	          	},
-	          	lootThreshold = {
+				},
+				lootThreshold = {
 		            name = L["Loot Threshold"],
 		            desc = L["Minimum item quality to log."],
 		            type = "select",
 		            style = "dropdown",
 		            values = Statics.ItemQuality,
 		            set = function(info,val) GLTOptions.LootThreshold = val end,
-		            get = function(info) 
-		            		if GLT.isEmpty(GLTOptions.LootThreshold) then
-		            			GLTOptions.LootThreshold = 3
-		            		end
-		            		return GLTOptions.LootThreshold 
-		            	end,
+		            get = function(info)
+							if GLT.isEmpty(GLTOptions.LootThreshold) then
+								GLTOptions.LootThreshold = 3
+							end
+							return GLTOptions.LootThreshold
+						end,
 		            order = 120
 		        },
-        	},
+			},
         },
 	    colourTab = {
 	        name = L["Colour"],
@@ -63,12 +63,12 @@ GLT.OptionsTable = {
 	        type = "group",
 	        order = 3,
 	        args = {
-	          	ctitle1 = {
+				ctitle1 = {
 		            type = "header",
 		            name = L["General Options"],
 		            order = 100,
-	          	},
-	          	titleColour = {
+				},
+				titleColour = {
 		            type = "color",
 		            name = L["Title Colour"],
 		            desc = L["Picks a Custom Colour for the Mod Names."],
@@ -78,8 +78,8 @@ GLT.OptionsTable = {
 		            set = function(info, r, g, b, a)
 		              GLTOptions.TitleColour = string.format("|c%02x%02x%02x%02x", a*255 , r*255, g * 255, b*255)
 		            end,
-	          	},
-	          	authorColour = {
+				},
+				authorColour = {
 		            type = "color",
 		            name = L["Author Colour"],
 		            desc = L["Picks a Custom Colour for the Author."],
@@ -91,8 +91,8 @@ GLT.OptionsTable = {
 		            set = function(info, r, g, b)
 		              GLTOptions.AuthorColour = string.format("|c%02x%02x%02x%02x", 255 , r*255, g * 255, b*255)
 		            end,
-	          	},
-	          	commandColour = {
+				},
+				commandColour = {
 		            type = "color",
 		            name = L["Command Colour"],
 		            desc = L["Picks a Custom Colour for the Commands."],
@@ -104,8 +104,8 @@ GLT.OptionsTable = {
 		            set = function(info, r, g, b)
 		              GLTOptions.CommandColour = string.format("|c%02x%02x%02x%02x", 255 , r*255, g * 255, b*255)
 		            end,
-	          	},
-	          	emphasisColour = {
+				},
+				emphasisColour = {
 		            type = "color",
 		            name = L["Emphasis Colour"],
 		            desc = L["Picks a Custom Colour for emphasis."],
@@ -117,8 +117,8 @@ GLT.OptionsTable = {
 		            set = function(info, r, g, b)
 		              GLTOptions.EmphasisColour = string.format("|c%02x%02x%02x%02x", 255 , r*255, g * 255, b*255)
 		            end,
-	          	},
-	          	normalColour = {
+				},
+				normalColour = {
 		            type = "color",
 		            name = L["Normal Colour"],
 		            desc = L["Picks a Custom Colour to be used normally."],
@@ -130,14 +130,14 @@ GLT.OptionsTable = {
 		            set = function(info, r, g, b)
 		              GLTOptions.NormalColour = string.format("|c%02x%02x%02x%02x", 255 , r*255, g * 255, b*255)
 		            end,
-	          	},
-	          	ctitle2 = {
+				},
+				ctitle2 = {
 		            type = "header",
 		            name = L["Editor Colours"],
 		            order = 200,
 		        },
 
-	          	keywordColour = {
+				keywordColour = {
 		            type = "color",
 		            name = L["Spell Colour"],
 		            desc = L["Picks a Custom Colour to be used for Spells and Abilities."],
@@ -149,8 +149,8 @@ GLT.OptionsTable = {
 		            set = function(info, r, g, b)
 		              GLT.GUISetColour(GLTOptions.KEYWORD, r, g, b)
 		            end,
-	          	},
-	          	unknownColour = {
+				},
+				unknownColour = {
 		            type = "color",
 		            name = L["Unknown Colour"],
 		            desc = L["Picks a Custom Colour to be used for unknown terms."],
@@ -162,8 +162,8 @@ GLT.OptionsTable = {
 		            set = function(info, r, g, b)
 		              GLT.GUISetColour(GLTOptions.UNKNOWN, r, g, b)
 		            end,
-	          	},
-	          	iconColour = {
+				},
+				iconColour = {
 		            type = "color",
 		            name = L["Icon Colour"],
 		            desc = L["Picks a Custom Colour to be used for Icons."],
@@ -175,8 +175,8 @@ GLT.OptionsTable = {
 		            set = function(info, r, g, b)
 		              GLT.GUISetColour(GLTOptions.CONCAT, r, g, b)
 		            end,
-	          	},
-	          	numberColour = {
+				},
+				numberColour = {
 		            type = "color",
 		            name = L["SpecID/ClassID Colour"],
 		            desc = L["Picks a Custom Colour to be used for numbers."],
@@ -188,8 +188,8 @@ GLT.OptionsTable = {
 		            set = function(info, r, g, b)
 		              GLT.GUISetColour(GLTOptions.NUMBER, r, g, b)
 		            end,
-	          	},
-	          	stringColour = {
+				},
+				stringColour = {
 		            type = "color",
 		            name = L["String Colour"],
 		            desc = L["Picks a Custom Colour to be used for strings."],
@@ -202,8 +202,8 @@ GLT.OptionsTable = {
 		            set = function(info, r, g, b)
 		              GLT.GUISetColour(GLTOptions.STRING, r, g, b)
 		            end,
-	          	},
-	          	conditionalColour = {
+				},
+				conditionalColour = {
 		            type = "color",
 		            name = L["Conditionals Colour"],
 		            desc = L["Picks a Custom Colour to be used for macro conditionals eg [mod:shift]"],
@@ -215,8 +215,8 @@ GLT.OptionsTable = {
 		            set = function(info, r, g, b)
 		              GLT.GUISetColour(GLTOptions.COMMENT, r, g, b)
 		            end,
-	          	},
-	          	helpColour = {
+				},
+				helpColour = {
 		            type = "color",
 		            name = L["Help Colour"],
 		            desc = L["Picks a Custom Colour to be used for braces and indents."],
@@ -228,8 +228,8 @@ GLT.OptionsTable = {
 		            set = function(info, r, g, b)
 		              GLT.GUISetColour(GLTOptions.INDENT, r, g, b)
 		            end,
-	          	},
-	          	stepColour = {
+				},
+				stepColour = {
 		            type = "color",
 		            name = L["Step Functions"],
 		            desc = L["Picks a Custom Colour to be used for StepFunctions."],
@@ -241,8 +241,8 @@ GLT.OptionsTable = {
 		            set = function(info, r, g, b)
 		              GLT.GUISetColour(GLTOptions.EQUALS, r, g, b)
 		            end,
-	          	},
-	          	languageColour = {
+				},
+				languageColour = {
 		            type = "color",
 		            name = L["Language Colour"],
 		            desc = L["Picks a Custom Colour to be used for language descriptors"],
@@ -254,8 +254,8 @@ GLT.OptionsTable = {
 		            set = function(info, r, g, b)
 		              GLT.GUISetColour(GLTOptions.STANDARDFUNCS, r, g, b)
 		            end,
-	          	},
-	          	shortcutsColour = {
+				},
+				shortcutsColour = {
 		            type = "color",
 		            name = L["Blizzard Functions Colour"],
 		            desc = L["Picks a Custom Colour to be used for Macro Keywords like /cast and /target"],
@@ -267,13 +267,13 @@ GLT.OptionsTable = {
 		            set = function(info, r, g, b)
 		              GLT.GUISetColour(GLTOptions.WOWSHORTCUTS, r, g, b)
 		            end,
-	          	},
+				},
 	        },
 	    },
 	    aboutTab = {
 	        name = L["About"],
 	        desc = L["About Guild Loot Tracker"],
-	        type = "group",
+			type = "group",
 	        order = 5,
 	        args = {
 	          -- aboutIcon = {
@@ -284,19 +284,19 @@ GLT.OptionsTable = {
 	          --   imageHeight = 100;
 	          --   order = 5
 	          -- },
-	          	title4 = {
+				title4 = {
 		            type = "header",
 		            name = L["History"],
 		            order = 10,
-	          	},
-	          	aboutDescription = {
+				},
+				aboutDescription = {
 		            type = "description",
 		            name = L["Guild Loot Tracker was written to track loot over multiple raid groups by TimothyLuke."],
 		            order = 20,
 		            image = "Interface\\Addons\\guild-loot-tracker\\Textures\\icon.tga",
 		            imageWidth = 120;
 		            imageHeight = 120;
-	          	},
+				},
 	          -- title5 = {
 	          --   type = "header",
 	          --   name = L["Supporters"],
@@ -308,39 +308,39 @@ GLT.OptionsTable = {
 	          --   order = 31,
 	          -- },
 	        },
-	    },      
+		},      
 	    debugTab = {
 	        name = L["Debug"],
 	        desc = L["Debug Mode Options"],
 	        type = "group",
 	        order = -1,
 	        args = {
-	          	title4 = {
+				title4 = {
 		            type = "header",
 		            name = L["Debug Mode Options"],
 		            order = 1
-	          	},
-	          	debug={
+				},
+				debug={
 		            name = L["Enable Mod Debug Mode"],
 		            desc = L["This option dumps extra trace information to your chat window to help troubleshoot problems with the mod"],
 		            type = "toggle",
 		            set = function(info,val) GLTOptions.debug = val GSE.PrintDebugMessage("Debug Mode Enabled", GNOME) end,
 		            get = function(info) return GLTOptions.debug end,
 		            order = 10
-	          	},
-	          	title5= {
+				},
+				title5= {
 		            type = "header",
 		            name = L["Debug Output Options"],
 		            order = 20
-	          	},
-	          	debugchat={
+				},
+				debugchat={
 		            name = L["Display debug messages in Chat Window"],
 		            desc = L["This will display debug messages in the Chat window."],
 		            type = "toggle",
 		            set = function(info,val) GLTOptions.sendDebugOutputToChatWindow  = val end,
 		            get = function(info) return GLTOptions.sendDebugOutputToChatWindow  end,
 		            order = 21
-	          	},
+				},
 	          checkZone={
 	            name = "CheckZone",
 	            desc = "Print out zone Information",

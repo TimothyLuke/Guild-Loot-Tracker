@@ -20,13 +20,13 @@ function GLT:GROUP_ROSTER_UPDATE(...)
 end
 
 function GLT:ADDON_LOADED(event, addon)
-	
+
 	if addon == GLTAddon then
 		LibStub("AceConfig-3.0"):RegisterOptionsTable(GLTAddon, GLT.OptionsTable, {"glt"})
-		LibStub("AceConfigDialog-3.0"):AddToBlizOptions(GLTAddon, L["|cffff00FFGLT:|r Guild Loot Tracker"])	
+		LibStub("AceConfigDialog-3.0"):AddToBlizOptions(GLTAddon, L["|cffff00FFGLT:|r Guild Loot Tracker"])
 		if  GLT.isEmpty(GLTOptions) then
 			GLT.SetDefaultOptions()
-			
+
 		end
 		print(L["|cffff00FFGLT:|r Guild Loot Tracker"], "Version ", GLT.VersionString, " loaded.")
 		if GLT.isEmpty(LootHistory) then
@@ -39,7 +39,7 @@ end
 -- 	print("Got: ", input)
 -- end
 
-function GLT:CHAT_MSG_LOOT(...) 
+function GLT:CHAT_MSG_LOOT(...)
 	-- print("Got Here")
 	-- print(...)
 	local event, lootstring, altPlayer,  _, _, player, specialFlags, zoneChannelID, channelIndex, channelBaseName  = ... --"text", "playerName", "languageName", "channelName", "playerName2", "specialFlags", zoneChannelID, channelIndex, "channelBaseName", unused, lineID, "guid", bnSenderID, isMobile, isSubtitle, hideSenderInLetterbox, supressRaidIcons
@@ -53,15 +53,15 @@ function GLT:CHAT_MSG_LOOT(...)
     local itemString = string.match(itemLink, "item[%-?%d:]+")
     -- print("itemString", itemString)
     local _, _, quality, _, _, class, subclass, _, equipSlot, texture, _, ClassID, SubClassID = GetItemInfo(itemString)
- 	if string.len(player) >= 1 then
-    	local isRaid, instanceMapID, _ = GLT.checkInstance()
-    	if isRaid and quality > GLTOptions.LootThreshold then
-    		GLT.logLootDrop(player, itemLink, quality, instanceMapID, GLT.lastBoss)
-    		print(player, "Looted: " .. itemLink, " of ", Statics.ItemQuality[quality])
-    	end
-    	-- print(...)
+    if string.len(player) >= 1 then
+		local isRaid, instanceMapID, _ = GLT.checkInstance()
+		if isRaid and quality > GLTOptions.LootThreshold then
+			GLT.logLootDrop(player, itemLink, quality, instanceMapID, GLT.lastBoss)
+			print(player, "Looted: " .. itemLink, " of ", Statics.ItemQuality[quality])
+		end
+		-- print(...)
     end
-end 
+end
 
 function GLT:COMBAT_LOG_EVENT_UNFILTERED(...)
 	--print(CombatLogGetCurrentEventInfo())
@@ -77,10 +77,10 @@ function GLT:COMBAT_LOG_EVENT_UNFILTERED(...)
             bossID = tonumber(ID);
         end
         -- print(destGUID, destName, bossID);
-        
+
         GLT.lastBoss = bossID
 
-    end    
+    end
 end
 
 

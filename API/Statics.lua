@@ -22,8 +22,8 @@ Statics.RaidZones = {
 	[469] = true, -- Blackwing Lair
 	[509] = true, -- Ruins of Ahn'Qiraj
     [531] = true, -- Temple of Ahn'Qiraj
-   	[533] = true, -- Naxxramas 
-	-- Need ZG's Zone 
+    [533] = true, -- Naxxramas
+	-- Need ZG's Zone
     [859] = true, -- Guessing
 }
 
@@ -39,7 +39,7 @@ Statics.Encounters = {
     [12098] = true, -- Sulfuron Harbinger
     [12018] = true, -- Majordomo Executus
     [11502] = true, -- Ragnaros
-  	-- Onyxias Lair
+    -- Onyxias Lair
     [10184] = true, -- Onyxia
     -- Blackwing Lair
     [12435] = true, -- Razorgore the Untamed
