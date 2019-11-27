@@ -7,6 +7,8 @@ L = GLT.L
 
 GNOME = "UnitTest"
 
+StaticPopupDialogs = {}
+
 LootHistory = {}
 
 L["Guild Loot Tracker is out of date. You can download the newest version from"] = "Guild Loot Tracker is out of date. You can download the newest version from"
