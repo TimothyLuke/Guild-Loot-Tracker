@@ -6,7 +6,7 @@ GLT.Static = {}
 local Statics = GLT.Static
 
 Statics.StringReset =  "|r"
-
+Statics.CommPrefix = "GLT"
 Statics.ItemQuality = {
 	[0] = L["Grey"],
 	[1] = L["White"],
@@ -84,4 +84,43 @@ Statics.Encounters = {
     [15989] = true, -- Sapphiron
     [15990] = true, -- Kel'Thuzad
    -- Zul'Gurub
+}
+
+Statics.DownloadLocation = "https://www.curseforge.com/wow/addons/GLT-gnome-sequencer-enhanced-advanced-macros"
+
+StaticPopupDialogs['GLT_UPDATE_AVAILABLE'] = {
+	text = L["Guild Loot Tracker is out of date. You can download the newest version from"] .. " " .. Statics.DownloadLocation,
+	hasEditBox = 1,
+	OnShow = function(self)
+		self.editBox:SetAutoFocus(false)
+		self.editBox:SetWidth(220)
+		self.editBox:SetText(Statics.DownloadLocation)
+		self.editBox:HighlightText()
+		ChatEdit_FocusActiveWindow();
+	end,
+	OnHide = function(self)
+		self.editBox:SetWidth(self.editBox.width or 50)
+	end,
+	hideOnEscape = 1,
+	button1 = OKAY,
+	EditBoxOnEnterPressed = function(self)
+		ChatEdit_FocusActiveWindow();
+		self:GetParent():Hide();
+	end,
+	EditBoxOnEscapePressed = function(self)
+		ChatEdit_FocusActiveWindow();
+		self:GetParent():Hide();
+	end,
+	EditBoxOnTextChanged = function(self)
+		if(self:GetText() ~= Statics.DownloadLocation) then
+			self:SetText(Statics.DownloadLocation)
+		end
+		self:HighlightText()
+		self:ClearFocus()
+		ChatEdit_FocusActiveWindow();
+	end,
+	OnEditFocusGained = function(self)
+		self:HighlightText()
+	end,
+	showAlert = 1,
 }

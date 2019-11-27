@@ -22,6 +22,7 @@ function GLT.SetDefaultOptions()
 	GLTOptions.EQUALS = "|cffccddee"
 	GLTOptions.STANDARDFUNCS = "|cff55ddcc"
 	GLTOptions.WOWSHORTCUTS = "|cffddaaff"
+	GLTOptions.LootThreshold = 3
 end
 
 GLT.OptionsTable = {
@@ -46,7 +47,12 @@ GLT.OptionsTable = {
 		            style = "dropdown",
 		            values = Statics.ItemQuality,
 		            set = function(info,val) GLTOptions.LootThreshold = val end,
-		            get = function(info) return GLTOptions.LootThreshold end,
+		            get = function(info) 
+		            		if GLT.isEmpty(GLTOptions.LootThreshold) then
+		            			GLTOptions.LootThreshold = 3
+		            		end
+		            		return GLTOptions.LootThreshold 
+		            	end,
 		            order = 120
 		        },
         	},

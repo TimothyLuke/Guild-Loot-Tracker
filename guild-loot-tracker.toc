@@ -35,9 +35,10 @@ Localization\ModL_zhTW.lua
 
 #App Stuff
 API\Init.lua
-API\Options.lua
-API\StringFunctions.lua
 API\Statics.lua
+API\StringFunctions.lua
+API\Options.lua
 API\Storage.lua
+API\Serialisation.lua
 API\Events.lua
 API\GUI.lua

@@ -7,7 +7,15 @@ local L = GLT.L
 
 
 function GLT:GROUP_ROSTER_UPDATE(...)
+  -- Serialisation stuff
+  GLT.sendVersionCheck()
+  for k,v in pairs(GLT.UnsavedOptions["PartyUsers"]) do
+    if not (UnitInParty(k) or UnitInRaid(k)) then
+      -- Take them out of the list
+      GLT.UnsavedOptions["PartyUsers"][k] = nil
+    end
 
+  end
 
 end
 
@@ -47,7 +55,7 @@ function GLT:CHAT_MSG_LOOT(...)
     local _, _, quality, _, _, class, subclass, _, equipSlot, texture, _, ClassID, SubClassID = GetItemInfo(itemString)
  	if string.len(player) >= 1 then
     	local isRaid, instanceMapID, _ = GLT.checkInstance()
-    	if isRaid and quality > 1 then
+    	if isRaid and quality > GLTOptions.LootThreshold then
     		GLT.logLootDrop(player, itemLink, quality, instanceMapID, GLT.lastBoss)
     		print(player, "Looted: " .. itemLink, " of ", Statics.ItemQuality[quality])
     	end
