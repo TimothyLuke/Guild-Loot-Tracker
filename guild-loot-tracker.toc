@@ -10,8 +10,8 @@
 ## Version: @project-version@
 ## SavedVariablesPerCharacter: LootHistory GLTOptions
 
-# ## X-WoWI-ID: 23921
-# ## X-Curse-Project-ID: 101161
+
+# ## X-Curse-Project-ID: 352821
 
 # Lib
 embeds.xml
