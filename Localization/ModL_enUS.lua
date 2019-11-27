@@ -59,3 +59,4 @@ L["Loot Threshold"] = true
 L["Minimum item quality to log."] = true
 
 L["Guild Loot Tracker is out of date. You can download the newest version from"] = true
+--

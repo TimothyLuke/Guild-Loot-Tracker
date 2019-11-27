@@ -7,6 +7,8 @@ GNOME = "UnitTest"
 
 LootHistory = {}
 
+L["Guild Loot Tracker is out of date. You can download the newest version from"] = "Guild Loot Tracker is out of date. You can download the newest version from"
+
 -- Mock Character Functions
 function GetTalentTierInfo(tier, ...)
   return 1
