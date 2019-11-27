@@ -22,7 +22,7 @@ install:
 - luarocks install luadoc
 script:
 - luacheck --no-max-line-length --no-global --no-unused --allow-defined --std max+busted API/*.lua
-- bash ./deploy.sh
+#- bash ./deploy.sh
 - busted --verbose --coverage
 - mkdir .release
 after_success:
