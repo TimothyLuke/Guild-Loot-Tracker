@@ -1,4 +1,5 @@
 local GLT = GLT
+local L = GLT.L
 
 GLT.Static = {}
 
@@ -7,12 +8,12 @@ local Statics = GLT.Static
 Statics.StringReset =  "|r"
 
 Statics.ItemQuality = {
-	[0] = "Grey",
-	[1] = "White",
-	[2] = 'Green',
-	[3] = "Blue",
-	[4] = "Epic",
-	[5] = "Legendary"
+	[0] = L["Grey"],
+	[1] = L["White"],
+	[2] = L['Green'],
+	[3] = L["Blue"],
+	[4] = L["Epic"],
+	[5] = L["Legendary"]
 }
 
 Statics.RaidZones = {
@@ -28,60 +29,59 @@ Statics.RaidZones = {
 
 Statics.Encounters = {
 	-- Molten Core
-    [663] = 12118, -- Lucifron
-    [664] = 11982, -- Magmadar
-    [665] = 12259, -- Gehennas
-    [666] = 12057, -- Garr
-    [667] = 12264, -- Shazzrah
-    [668] = 12056, -- Baron Geddon
-    [670] = 11988, -- Golemagg the Incinerator
-    [669] = 12098, -- Sulfuron Harbinger
-    [671] = 12018, -- Majordomo Executus
-    [672] = 11502, -- Ragnaros
+    [12118] = true, -- Lucifron
+    [11982] = true, -- Magmadar
+    [12259] = true, -- Gehennas
+    [12057] = true, -- Garr
+    [12264] = true, -- Shazzrah
+    [12056] = true, -- Baron Geddon
+    [11988] = true, -- Golemagg the Incinerator
+    [12098] = true, -- Sulfuron Harbinger
+    [12018] = true, -- Majordomo Executus
+    [11502] = true, -- Ragnaros
   	-- Onyxias Lair
-    [1084] = 10184, -- Onyxia
+    [10184] = true, -- Onyxia
     -- Blackwing Lair
-    [610] = 12435, -- Razorgore the Untamed
-    [611] = 13020, -- Vaelastrasz the Corrupt
-    [612] = 12017, -- Broodlord Lashlayer
-    [613] = 11983, -- Firemaw
-    [614] = 14601, -- Ebonroc
-    [615] = 11981, -- Flamegor
-    [616] = 14020, -- Chromaggus
-    [617] = 11583, -- Nefarian
+    [12435] = true, -- Razorgore the Untamed
+    [13020] = true, -- Vaelastrasz the Corrupt
+    [12017] = true, -- Broodlord Lashlayer
+    [11983] = true, -- Firemaw
+    [14601] = true, -- Ebonroc
+    [11981] = true, -- Flamegor
+    [14020] = true, -- Chromaggus
+    [11583] = true, -- Nefarian
     -- Ruins of Ahn'Qiraj
-    [718] = 15348, -- Kurinnaxx
-    [719] = 15341, -- General Rajaxx
-    [720] = 15340, -- Moam
-    [721] = 15370, -- Buru the Gorger
-    [722] = 15369, -- Ayamiss the Hunter
-    [723] = 15339, -- Ossirian the Unscarred
+    [15348] = true, -- Kurinnaxx
+    [15341] = true, -- General Rajaxx
+    [15340] = true, -- Moam
+    [15370] = true, -- Buru the Gorger
+    [15369] = true, -- Ayamiss the Hunter
+    [15339] = true, -- Ossirian the Unscarred
     -- Temple of Ahn'Qiraj
-    [709] = 15263, -- The Prophet Skeram
-    [711] = 15516, -- Battleguard Sartura
-    [712] = 15510, -- Fankriss the Unyielding
-    [714] = 15509, -- Princess Huhuran
-    [715] = 15276, -- Twin Emperors
-    [717] = 15589, -- C'Thun
-    [710] = 15544, -- Bug Trio
-    [713] = 15299, -- Viscidus
-    [716] = 15517, -- Ouro
+    [15263] = true, -- The Prophet Skeram
+    [15516] = true, -- Battleguard Sartura
+    [15510] = true, -- Fankriss the Unyielding
+    [15509] = true, -- Princess Huhuran
+    [15276] = true, -- Twin Emperors
+    [15589] = true, -- C'Thun
+    [15544] = true, -- Bug Trio
+    [15299] = true, -- Viscidus
+    [15517] = true, -- Ouro
    -- Naxxramas
-    [1107] = 15956, -- Anub'Rekhan
-    [1110] = 15953, -- Grand Widow Faerlina
-    [1116] = 15952, -- Maexxna
-    [1117] = 15954, -- Noth the Plaguebringer
-    [1112] = 15936, -- Heigan the Unclean
-    [1115] = 16011, -- Loatheb
-    [1113] = 16061, -- Instructor Razuvious
-    [1109] = 16060, -- Gothik the Harvester
-    [1121] = 16063, -- The Four Horsemen
-    [1118] = 16028, -- Patchwerk
-    [1111] = 15931, -- Grobbulus
-    [1108] = 15932, -- Gluth
-    [1120] = 15928, -- Thaddius
-    [1119] = 15989, -- Sapphiron
-    [1114] = 15990, -- Kel'Thuzad
-
-
+    [15956] = true, -- Anub'Rekhan
+    [15953] = true, -- Grand Widow Faerlina
+    [15952] = true, -- Maexxna
+    [15954] = true, -- Noth the Plaguebringer
+    [15936] = true, -- Heigan the Unclean
+    [16011] = true, -- Loatheb
+    [16061] = true, -- Instructor Razuvious
+    [16060] = true, -- Gothik the Harvester
+    [16063] = true, -- The Four Horsemen
+    [16028] = true, -- Patchwerk
+    [15931] = true, -- Grobbulus
+    [15932] = true, -- Gluth
+    [15928] = true, -- Thaddius
+    [15989] = true, -- Sapphiron
+    [15990] = true, -- Kel'Thuzad
+   -- Zul'Gurub
 }

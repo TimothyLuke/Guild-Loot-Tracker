@@ -39,6 +39,16 @@ GLT.OptionsTable = {
 		            name = L["General Options"],
 		            order = 100
 	          	},
+	          	lootThreshold = {
+		            name = L["Loot Threshold"],
+		            desc = L["Minimum item quality to log."],
+		            type = "select",
+		            style = "dropdown",
+		            values = Statics.ItemQuality,
+		            set = function(info,val) GLTOptions.LootThreshold = val end,
+		            get = function(info) return GLTOptions.LootThreshold end,
+		            order = 120
+		        },
         	},
         },
 	    colourTab = {

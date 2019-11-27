@@ -36,7 +36,7 @@ function GLT.ParseVersion(version)
   if GLT.isEmpty(number) and type(version) == "number" then
     returnVal = version
   else
-    if table.getn(numbers) > 1 then
+    if table.getn(numbers) >= GLTOptions.LootThreshold then
       returnVal = (tonumber(numbers[1]) * 1000) + (tonumber(numbers[2]) * 100) + (tonumber(numbers[3]) )
     else
       returnVal = tonumber(version)

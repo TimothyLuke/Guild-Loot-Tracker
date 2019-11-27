@@ -49,3 +49,11 @@ L["This option dumps extra trace information to your chat window to help trouble
 L["Debug Output Options"] = true
 L["Display debug messages in Chat Window"] = true
 L["This will display debug messages in the Chat window."] = true
+L["Grey"] = true
+L["White"] = true
+L['Green'] = true
+L["Blue"] = true
+L["Epic"] = true
+L["Legendary"] = true
+L["Loot Threshold"] = true
+L["Minimum item quality to log."] = true

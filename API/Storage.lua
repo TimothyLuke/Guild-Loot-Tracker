@@ -1,4 +1,8 @@
 function GLT.logLootDrop(player, itemLink, quality, instanceID, bossID)
+	if not Statics.Encounters[bossID] then
+		bossID = 0
+	end
+
 	local lootRecord = {
 		["timestamp"] = GetServerTime(),
 		["instanceID"] = instanceID,
