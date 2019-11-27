@@ -1,4 +1,6 @@
 local GLT = GLT
+local Statics = GLT.Static
+
 
 --- Remove WoW Text Markup from a sequence.
 function GLT.UnEscapeSequence(sequence)
