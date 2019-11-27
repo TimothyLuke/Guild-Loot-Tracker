@@ -308,7 +308,7 @@ GLT.OptionsTable = {
 	          --   order = 31,
 	          -- },
 	        },
-		}, 
+		},
 	    debugTab = {
 	        name = L["Debug"],
 	        desc = L["Debug Mode Options"],

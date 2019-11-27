@@ -3,6 +3,8 @@ GLT.L = {}
 GLT.Static = {}
 GLT.VersionString = "2.0.00-18-g95ecb41";
 
+L = GLT.L
+
 GNOME = "UnitTest"
 
 LootHistory = {}
