@@ -139,7 +139,7 @@ function GLT.sendMessage(data, channel, target)
     else
       channel = (not IsInGroup(LE_PARTY_CATEGORY_HOME) and IsInGroup(LE_PARTY_CATEGORY_INSTANCE)) and "INSTANCE_CHAT" or "PARTY"
     end
-  else 
+  else
     channel = "GUILD"
   end
   GLT:SendCommMessage(Statics.CommPrefix, transmission, channel, target)
