@@ -9,13 +9,16 @@ local L = GLT.L
 function GLT:GROUP_ROSTER_UPDATE(...)
   -- Serialisation stuff
   GLT.sendVersionCheck()
-  for k,v in pairs(GLT.UnsavedOptions["PartyUsers"]) do
-    if not (UnitInParty(k) or UnitInRaid(k)) then
-      -- Take them out of the list
-      GLT.UnsavedOptions["PartyUsers"][k] = nil
-    end
+  if table.getn(GLT.UnsavedOptions) > 0 then
+      for k,v in pairs(GLT.UnsavedOptions["PartyUsers"]) do
+        if not (UnitInParty(k) or UnitInRaid(k)) then
+          -- Take them out of the list
+          GLT.UnsavedOptions["PartyUsers"][k] = nil
+        end
 
+      end
   end
+  -- Check if in a raid
 
 end
 

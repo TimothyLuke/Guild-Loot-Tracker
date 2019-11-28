@@ -26,7 +26,7 @@ local gameversion, build, date, tocversion = GetBuildInfo()
 local majorVersion = GLT.split(gameversion, '.')
 
 GLT.GameMode = tonumber(majorVersion[1])
-
+GLT.UnsavedOptions = {}
 
 --- This function takes a version String and returns a version number.
 function GLT.ParseVersion(version)

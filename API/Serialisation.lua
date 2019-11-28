@@ -119,7 +119,11 @@ function  GLT.DecodeMessage(data)
   return success, final
 end
 
-function GLT.sendMessage(tab, channel, target)
+
+--- data is the information or table to send
+-- channel is one of "PARTY", "RAID", "GUILD", "BATTLEGROUND", "WHISPER", and "CHANNEL"
+-- where channel is Whisper or Channel, target is the channelID or the target.
+function GLT.sendMessage(data, channel, target)
   local _, instanceType = IsInInstance()
   -- GLT.PrintDebugMessage(tab.Command, Statics.SourceTransmission)
   -- if tab.Command == "GLT_TRANSMITSEQUENCE" then
@@ -127,7 +131,7 @@ function GLT.sendMessage(tab, channel, target)
   --   GLT.PrintDebugMessage(GLT.isEmpty(tab.Sequence))
   --   GLT.PrintDebugMessage(GLT.ExportSequence(tab.Sequence,tab.SequenceName), Statics.SourceTransmission)
   -- end
-  local transmission = GLT.EncodeMessage(tab)
+  local transmission = GLT.EncodeMessage(data)
   -- GLT.PrintDebugMessage("Transmission: \n" .. transmission, Statics.SourceTransmission)
   if GLT.isEmpty(channel) then
     if IsInRaid() then
@@ -135,6 +139,8 @@ function GLT.sendMessage(tab, channel, target)
     else
       channel = (not IsInGroup(LE_PARTY_CATEGORY_HOME) and IsInGroup(LE_PARTY_CATEGORY_INSTANCE)) and "INSTANCE_CHAT" or "PARTY"
     end
+  else 
+    channel = "GUILD"
   end
   GLT:SendCommMessage(Statics.CommPrefix, transmission, channel, target)
 
@@ -154,18 +160,18 @@ function  GLT.performVersionCheck(version)
 end
 
 function GLT.storeSender(sender, senderversion)
-  if GLT.isEmpty(GLT.UnsavedOptions["PartyUsers"]) then
-    GLT.UnsavedOptions["PartyUsers"] = {}
-  end
-  GLT.UnsavedOptions["PartyUsers"][sender] = senderversion
+    if GLT.isEmpty(GLT.UnsavedOptions["PartyUsers"]) then
+        GLT.UnsavedOptions["PartyUsers"] = {}
+    end
+    GLT.UnsavedOptions["PartyUsers"][sender] = senderversion
 end
 
 function  GLT.sendVersionCheck()
-  local _, instanceType = IsInInstance()
-  local t = {}
-  t.Command = "GLT_VERSIONCHK"
-  t.Version =  GLT.VersionString
-   GLT.sendMessage(t)
+    local _, instanceType = IsInInstance()
+    local t = {}
+    t.Command = "GLT_VERSIONCHK"
+    t.Version =  GLT.VersionString
+    GLT.sendMessage(t)
 end
 
 
