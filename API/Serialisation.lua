@@ -187,19 +187,23 @@ function GLT:OnCommReceived(prefix, message, distribution, sender)
           end
           GLT.storeSender(sender, t.Version)
         elseif t.Command == Statics.SerialisationCommands['GetRaidInfo'] then
-
+            -- Get the full data of a raid by its ID
         elseif t.Command == Statics.SerialisationCommands['CloseRaid'] then
-
+            -- Close off Raid by ID
         elseif t.Command == Statics.SerialisationCommands['StartRaid'] then
-
+            -- Start a new raid
         elseif t.Command == Statics.SerialisationCommands['ListRaids'] then
-
+            -- List the raids that i know about
         elseif t.Command == Statics.SerialisationCommands['GetCurrentRaid'] then
-
+            -- Return the current Raid
+        elseif t.Command == Statics.SerialisationCommands['BroadcastLoot'] then
+            -- Advertise that i got loot for a raid
+        elseif t.Command == Statics.SerialisationCommands['MergeRaids'] then
+            -- Merge two raids
         end
     end
   else
-    -- Do debug stuff 
+    -- Do debug stuff
   end
 end
 

@@ -80,7 +80,9 @@ Statics.SerialisationCommands = {
     ['CloseRaid'] = "GLT_CLOSERAID",
     ['StartRaid'] = 'GLT_STARTRAID',
     ['ListRaids'] = 'GLT_LISTRAIDS',
-    ['GetCurrentRaid'] = "GLT_GETCURRENTRAID"
+    ['GetCurrentRaid'] = "GLT_GETCURRENTRAID",
+    ['BroadcastLoot'] = "GLT_BROADCASTLOOT",
+    ['MergeRaids'] = 'GLT_MERGERAIDS'
 }
 
 Statics.RaidZones = {

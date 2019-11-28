@@ -33,9 +33,9 @@ function GLT.ManageRaid()
     local isRaid, instanceMapId, type, maxPlayers, name = GLT.checkInstance()
     if GLT.ActiveRaid and isRaid then
         return GLT.ActiveRaid
-    else if GLT.ActiveRaid and not isRaid then
+    elseif GLT.ActiveRaid and not isRaid then
         GLT.CloseRaid(GLT.ActiveRaid)
-    else if isRaid then
+    elseif isRaid then
         GLT.OpenRaid()
     end
 end
