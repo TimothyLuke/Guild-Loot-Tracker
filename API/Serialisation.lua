@@ -166,12 +166,12 @@ function GLT.storeSender(sender, senderversion)
     GLT.UnsavedOptions["PartyUsers"][sender] = senderversion
 end
 
-function  GLT.sendVersionCheck()
+function  GLT.sendVersionCheck(channel)
     local _, instanceType = IsInInstance()
     local t = {}
-    t.Command = "GLT_VERSIONCHK"
+    t.Command = Statics.SerialisationCommands['Version']
     t.Version =  GLT.VersionString
-    GLT.sendMessage(t)
+    GLT.sendMessage(t, channel)
 end
 
 
@@ -180,19 +180,26 @@ end
 function GLT:OnCommReceived(prefix, message, distribution, sender)
   local success, t = GLT.DecodeMessage(message)
   if success then
-    if t.Command == "GLT_VERSIONCHK" then
-      if not GLTOld then
-        GLT.performVersionCheck(t.Version)
-      end
-      GLT.storeSender(sender, t.Version)
-    -- elseif t.Command == "GS-E_TRANSMITSEQUENCE" then
-    --   if sender ~= GetUnitName("player", true) then
-    --     GLT.ReceiveSequence(t.ClassID, t.SequenceName, t.Sequence, sender)
-    --   else
-    --     GLT.PrintDebugMessage("Ignoring Sequence from me.", Statics.SourceTransmission)
-    --     GLT.PrintDebugMessage(GLT.ExportSequence(t.Sequence, t.SequenceName, false, "ID", false), Statics.SourceTransmission)
-    --   end
+    if sender ~= GetUnitName("player", true) then
+        if t.Command == Statics.SerialisationCommands['Version'] then
+          if not GLTOld then
+            GLT.performVersionCheck(t.Version)
+          end
+          GLT.storeSender(sender, t.Version)
+        elseif t.Command == Statics.SerialisationCommands['GetRaidInfo'] then
+
+        elseif t.Command == Statics.SerialisationCommands['CloseRaid'] then
+
+        elseif t.Command == Statics.SerialisationCommands['StartRaid'] then
+
+        elseif t.Command == Statics.SerialisationCommands['ListRaids'] then
+
+        elseif t.Command == Statics.SerialisationCommands['GetCurrentRaid'] then
+
+        end
     end
+  else
+    -- Do debug stuff 
   end
 end
 

@@ -28,3 +28,22 @@ function GLT.checkInstance()
 	end
 	return isRaid, instanceMapId, type, maxPlayers, name
 end
+
+function GLT.ManageRaid()
+    local isRaid, instanceMapId, type, maxPlayers, name = GLT.checkInstance()
+    if GLT.ActiveRaid and isRaid then
+        return GLT.ActiveRaid
+    else if GLT.ActiveRaid and not isRaid then
+        GLT.CloseRaid(GLT.ActiveRaid)
+    else if isRaid then
+        GLT.OpenRaid()
+    end
+end
+
+function GLT.CloseRaid(raid)
+
+end
+
+function GLT.OpenRaid()
+
+end

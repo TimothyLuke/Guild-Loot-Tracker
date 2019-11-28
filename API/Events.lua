@@ -19,7 +19,7 @@ function GLT:GROUP_ROSTER_UPDATE(...)
       end
   end
   -- Check if in a raid
-
+  GLT.ManageRaid()
 end
 
 function GLT:ADDON_LOADED(event, addon)
@@ -80,12 +80,29 @@ function GLT:COMBAT_LOG_EVENT_UNFILTERED(...)
             bossID = tonumber(ID);
         end
         -- print(destGUID, destName, bossID);
-
-        GLT.lastBoss = bossID
-
+        if Statics.Encounters[bossID]then
+            GLT.lastBoss = bossID
+        else
+            GLT.lastBoss = 0
+        end
     end
 end
 
+function GLT:GUILD_ROSTER_UPDATE(...)
+    GLT.sendVersionCheck("GUILD")
+end
+
+function GLT:ZONE_CHANGED(...)
+    GLT.ManageRaid()
+end
+
+function GLT:ZONE_CHANGED_INDOORS(...)
+    GLT.ManageRaid()
+end
+
+function GLT:ZONE_CHANGED_NEW_AREA(...)
+    GLT.ManageRaid()
+end
 
 
 GLT:RegisterEvent("GROUP_ROSTER_UPDATE")
@@ -93,3 +110,7 @@ GLT:RegisterEvent("CHAT_MSG_LOOT")
 --GLT:RegisterChatCommand("GLT", "CommandLine")
 GLT:RegisterEvent('ADDON_LOADED')
 GLT:RegisterEvent('COMBAT_LOG_EVENT_UNFILTERED')
+GLT:RegisterEvent('GUILD_ROSTER_UPDATE')
+GLT:RegisterEvent('ZONE_CHANGED')
+GLT:RegisterEvent('ZONE_CHANGED_INDOORS')
+GLT:RegisterEvent('ZONE_CHANGED_NEW_AREA')

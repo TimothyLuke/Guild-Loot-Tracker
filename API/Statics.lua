@@ -74,6 +74,15 @@ Statics.ItemQuality = {
 	[5] = L["Legendary"]
 }
 
+Statics.SerialisationCommands = {
+    ['Version'] = "GLT_VERSIONCHK",
+    ['GetRaidInfo'] = "GLT_GetRaidINFO",
+    ['CloseRaid'] = "GLT_CLOSERAID",
+    ['StartRaid'] = 'GLT_STARTRAID',
+    ['ListRaids'] = 'GLT_LISTRAIDS',
+    ['GetCurrentRaid'] = "GLT_GETCURRENTRAID"
+}
+
 Statics.RaidZones = {
     [249] = true, -- Onyxia's Lair
 	[409] = true, -- Molten Core
