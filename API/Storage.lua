@@ -77,9 +77,9 @@ function GLT.OpenRaid(instanceMapId)
         ["id"] = server + "-" + instanceMapId + "-" + currentTime + "-" + player,
         ["instanceMapId"] = instanceMapId,
         ["startDate"] = currentTime,
-        ["members"] = GLT.getCurrentRaidMembers()
+        ["members"] = GLT.getCurrentRaidMembers(),
         ["loot"] = {},
-        ["lastUpdated"] = currentTime
+        ["lastUpdated"] = currentTime,
         --endDate = timestamp
     }
     table.insert(GLTRaidLibrary, RaidSchema)
