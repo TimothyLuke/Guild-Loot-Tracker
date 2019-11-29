@@ -264,7 +264,7 @@ function GLT:OnCommReceived(prefix, message, distribution, sender)
                 GLT.ActiveRaid = nil
             end
         elseif t.Command == Statics.SerialisationCommands['StartRaid'] then
-            if GLT.isEmpty(GLT.findRaidIndex(t.raidId)) then 
+            if GLT.isEmpty(GLT.findRaidIndex(t.raidId)) then
                 table.insert(GLTRaidLibrary, t.raidInfo)
             end
             if GLT.isEmpty(t.raidInfo[endDate]) and GLT.playerInRaid(t.raidId) then
@@ -292,7 +292,7 @@ function GLT:OnCommReceived(prefix, message, distribution, sender)
         end
     end
   else
-    -- Do debug stuff
+    print(t.command)
   end
 end
 

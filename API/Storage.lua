@@ -18,7 +18,7 @@ function GLT.logLootDrop(player, itemLink, quality, instanceID, bossID)
 end
 
 function GLT.recordLootDrop(raidIndex, lootRecord)
-    loot index = lootRecord["instanceID"] + "-" + lootRecord["player"] + "-" + lootRecord["itemLink"]
+    local index = lootRecord["instanceID"] + "-" + lootRecord["player"] + "-" + lootRecord["itemLink"]
     GLTRaidLibrary[raidIndex]["loot"][index] = lootRecord
     GLTRaidLibrary[GLT.findRaidIndex(raidId)]["lastUpdated"] = getServerTime()
 end
