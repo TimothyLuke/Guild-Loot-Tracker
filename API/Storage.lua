@@ -13,8 +13,8 @@ function GLT.logLootDrop(player, itemLink, quality, instanceID, bossID)
 	}
 
     GLT.recordLootDrop(GLTRaidLibrary[GLT.ActiveRaid]["id"], lootRecord )
-    GLT.broadcastLootDrop(GLTRaidLibrary[raidIndex]["id"], lootRecord )    
-    
+    GLT.broadcastLootDrop(GLTRaidLibrary[raidIndex]["id"], lootRecord )
+
 end
 
 function GLT.recordLootDrop(raidIndex, lootRecord)
@@ -64,7 +64,7 @@ function GLT.getCurrentRaidMembers()
             ['name'] = name,
             ['class'] = class,
             ['level'] = level,
-        })        
+        })
     end
     return RaidMembers
 end
@@ -88,10 +88,10 @@ function GLT.OpenRaid(instanceMapId)
 end
 
 function GLT.receiveRaid(raidId, raidInfo)
-    -- see if raidId exists.  
+    -- see if raidId exists.
     local raidIndex = GLT.findRaidIndex(raidId)
     -- if not add the raid
-    if GLT.isEmpty(raidIndex) then 
+    if GLT.isEmpty(raidIndex) then
         table.insert(GLTRaidLibrary, raidInfo)
     else
         -- if so merge its data into ours
