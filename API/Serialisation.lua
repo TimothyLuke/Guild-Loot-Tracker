@@ -155,7 +155,7 @@ function  GLT.performVersionCheck(version)
 end
 
 function GLT.storeSender(sender, senderversion)
-    if sender and senderversion then 
+    if sender and senderversion then
         GLT.PrintDebugMessage("Sender: " + sender + " version: " + senderversion, Statics.DebugModules["Transmission"])
     end
     if GLT.isEmpty(GLT.UnsavedOptions["PartyUsers"]) then

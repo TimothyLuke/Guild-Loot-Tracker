@@ -370,16 +370,3 @@ GLT.OptionsTable = {
 	    }
 	}
 }
-
-local ord = 30
-for k,v in pairs(GLTOptions.DebugModules) do
-	ord = ord + 1
-	GLT.OptionsTable.args.debugTab.args[k] = {
-		name = k,
-		desc = L["This will display debug messages for the "] .. k,
-		type = "toggle",
-		set = function(info,val) GLTOptions.DebugModules[k] = val end,
-		get = function(info) return GLTOptions.DebugModules[k] end,
-		order = ord
-	}
-end
