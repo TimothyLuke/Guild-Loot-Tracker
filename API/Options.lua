@@ -1,5 +1,6 @@
 local GLT = GLT
 local L = GLT.L
+
 local Statics = GLT.Static
 
 
@@ -31,7 +32,7 @@ end
 
 GLT.OptionsTable = {
 	type = "group",
-	name = L["|cffff00FFGLT:|r Guild Loot Tracker Options"],
+	name = Statics.GLTPrefix .. L["Guild Loot Tracker Options"],
 	args = {
 		generalTab = {
 	        name = L["General"],
@@ -370,3 +371,5 @@ GLT.OptionsTable = {
 	    }
 	}
 }
+
+

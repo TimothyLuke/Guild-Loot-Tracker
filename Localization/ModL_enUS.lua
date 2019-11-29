@@ -1,8 +1,8 @@
 local L = LibStub("AceLocale-3.0"):NewLocale("GLT", "enUS", true)
 L["General"] = true
 L["General Options"] = true
-L["|cffff00FFGLT:|r Guild Loot Tracker Options"] = true 
-L["|cffff00FFGLT:|r Guild Loot Tracker"] = true
+L["Guild Loot Tracker"] = true
+L["Guild Loot Tracker Options"] = true
 L["Colour"] = true
 L["Colour and Accessibility Options"] = true
 L["Title Colour"] = true
@@ -59,4 +59,6 @@ L["Loot Threshold"] = true
 L["Minimum item quality to log."] = true
 
 L["Guild Loot Tracker is out of date. You can download the newest version from"] = true
+L["Enable Debug for the following Modules"] = true
+L["This will display debug messages for the "] = true
 --

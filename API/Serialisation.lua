@@ -125,7 +125,7 @@ end
 -- where channel is Whisper or Channel, target is the channelID or the target.
 function GLT.sendMessage(data, channel, target)
   local _, instanceType = IsInInstance()
-  GLT.PrintDebugMessage(tab.Command, Statics.DebugModules["Transmission"])
+  GLT.PrintDebugMessage(data, Statics.DebugModules["Transmission"])
   local transmission = GLT.EncodeMessage(data)
   GLT.PrintDebugMessage("Transmission: \n" .. transmission, Statics.DebugModules["Transmission"])
   if GLT.isEmpty(channel) then

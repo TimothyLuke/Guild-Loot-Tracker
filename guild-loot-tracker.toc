@@ -41,5 +41,6 @@ API\StringFunctions.lua
 API\Options.lua
 API\Storage.lua
 API\Serialisation.lua
+API\OneOffEvents.lua
 API\Events.lua
 API\GUI.lua

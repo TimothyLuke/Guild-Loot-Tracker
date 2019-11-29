@@ -1,8 +1,6 @@
 local GLT = GLT
 local L = GLT.L
 
-GLT.Static = {}
-
 local Statics = GLT.Static
 
 Statics.StringReset =  "|r"
@@ -14,6 +12,7 @@ Statics.StringFormatEscapes = {
     ["{.-}"] = "", -- Raid target icons
 }
 
+Statics.GLTPrefix = "|cffff00FFGLT:|r "
 
 Statics.CleanStrings = {
   [1] = "/console Sound_EnableSFX 0%;",

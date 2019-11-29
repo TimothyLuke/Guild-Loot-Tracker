@@ -2,6 +2,12 @@ GLT = LibStub("AceAddon-3.0"):NewAddon("GLT", "AceConsole-3.0", "AceEvent-3.0", 
 GLT.L = LibStub("AceLocale-3.0"):GetLocale("GLT")
 
 GLT.VersionString = GetAddOnMetadata("guild-loot-tracker", "Version");
+GLT.Static = {}
+
+local Statics = GLT.Static
+
+Statics.StringReset =  "|r"
+GLT.OutputQueue = {}
 
 --@debug@
 if GLT.VersionString == "@project-version@" then

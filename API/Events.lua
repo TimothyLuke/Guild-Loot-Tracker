@@ -25,7 +25,7 @@ end
 function GLT:ADDON_LOADED(event, addon)
     -- Add dynamic options
     local ord = 30
-    for k,v in pairs(GLTOptions.DebugModules) do
+    for k,v in pairs(Statics.DebugModules) do
       ord = ord + 1
       GLT.OptionsTable.args.debugTab.args[k] = {
         name = k,
@@ -39,12 +39,12 @@ function GLT:ADDON_LOADED(event, addon)
 
 	if addon == GLTAddon then
 		LibStub("AceConfig-3.0"):RegisterOptionsTable(GLTAddon, GLT.OptionsTable, {"glt"})
-		LibStub("AceConfigDialog-3.0"):AddToBlizOptions(GLTAddon, L["|cffff00FFGLT:|r Guild Loot Tracker"])
+		LibStub("AceConfigDialog-3.0"):AddToBlizOptions(GLTAddon, Statics.GLTPrefix .. L["Guild Loot Tracker"])
 		if  GLT.isEmpty(GLTOptions) then
 			GLT.SetDefaultOptions()
 
 		end
-		GLT.Print(L["|cffff00FFGLT:|r Guild Loot Tracker"], "Version ", GLT.VersionString, " loaded.")
+		GLT.Print(Statics.GLTPrefix .. GLTOptions.AuthorColour .. L["Guild Loot Tracker"] .. Statics.StringReset .. " Version " .. GLT.VersionString .. " loaded.")
 		if GLT.isEmpty(LootHistory) then
 			LootHistory = {}
 		end
@@ -80,7 +80,7 @@ function GLT:CHAT_MSG_LOOT(...)
 		local isRaid, instanceMapID, _ = GLT.checkInstance()
 		if isRaid and quality > GLTOptions.LootThreshold then
 			GLT.logLootDrop(player, itemLink, quality, instanceMapID, GLT.lastBoss)
-			print(player, "Looted: " .. itemLink, " of ", Statics.ItemQuality[quality])
+			GLT.PrintDebugMessage(player .. " Looted: " .. itemLink .. " of " .. Statics.ItemQuality[quality], Statics.DebugModules["Storage"])
 		end
 		-- print(...)
     end
