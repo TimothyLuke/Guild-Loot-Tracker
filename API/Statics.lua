@@ -82,7 +82,8 @@ Statics.SerialisationCommands = {
     ['ListRaids'] = 'GLT_LISTRAIDS',
     ['GetCurrentRaid'] = "GLT_GETCURRENTRAID",
     ['BroadcastLoot'] = "GLT_BROADCASTLOOT",
-    ['MergeRaids'] = 'GLT_MERGERAIDS'
+    ['MergeRaids'] = 'GLT_MERGERAIDS',
+    ['SendRaidInfo'] = "GLT_SendRaidINFO"
 }
 
 Statics.RaidZones = {

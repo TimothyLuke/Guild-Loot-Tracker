@@ -8,7 +8,8 @@
 ## Notes: Syncs loot drops from raids through the guild.
 ## Author: TimothyLuke
 ## Version: @project-version@
-## SavedVariablesPerCharacter: LootHistory GLTOptions
+## SavedVariables: GLTRaidLibrary GLTOptions
+
 
 # ## X-WoWI-ID: 23921
 ## X-Curse-Project-ID: 352821

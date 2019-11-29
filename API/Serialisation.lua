@@ -174,9 +174,76 @@ function  GLT.sendVersionCheck(channel)
     GLT.sendMessage(t, channel)
 end
 
+function GLT.sendRaidInfo(raidIndex, channel, target)
+    local t = {}
+    t.Command = Statics.SerialisationCommands['SendRaidInfo']
+    t.raidId =  GLTRaidLibrary[raidIndex][id]
+    t.raidInfo = GLTRaidLibrary[raidIndex]
+    t.lastUpdated = GLTRaidLibrary[raidIndex][lastUpdated]
+    GLT.sendMessage(t, channel, target)
+end
 
+function GLT.sendStartRaid(raidIndex, channel, target)
+    local t = {}
+    t.Command = Statics.SerialisationCommands['StartRaid']
+    t.raidId =  GLTRaidLibrary[raidIndex][id]
+    t.raidInfo = GLTRaidLibrary[raidIndex]
+    GLT.sendMessage(t, "GUILD", target)
+    GLT.sendMessage(t, "RAID", target)
+end
 
+function GLT.sendCloseRaid(raidIndex, channel, target)
+    local t = {}
+    t.Command = Statics.SerialisationCommands['CloseRaid']
+    t.raidId =  GLTRaidLibrary[raidIndex][id]
+    t.endDate = GLTRaidLibrary[raidIndex][endDate]
+    GLT.sendMessage(t, channel, target)
+end
 
+function GLT.sendCurrentRaid(raidIndex, channel, target)
+    local t = {}
+    t.Command = Statics.SerialisationCommands['GetCurrentRaid']
+    t.raidId =  GLTRaidLibrary[raidIndex][id]
+    GLT.sendMessage(t, channel, target)
+end
+
+function GLT.sendRaidList(raidIndex, channel, target)
+    local t = {}
+    t.Command = Statics.SerialisationCommands['ListRaids']
+    t.raidList =  GLT.getKnownRaids()
+    GLT.sendMessage(t, channel, target)
+end
+
+function GLT.sendRaid(raidId,sender)
+    local raid = GLTRaidLibrary[GLT.findRaidIndex(raidId)]
+    if not GLT.isEmpty(raid) then
+        GLT.sendRaidInfo(GLTRaidLibrary[GLT.findRaidIndex(raidId)], "WHISPER", target)
+    end
+end
+
+function GLT.requestRaid(raidId, channel, target)
+    local t = {}
+    t.Command = Statics.SerialisationCommands['ListRaids']
+    t.raidId =  raidId
+    GLT.sendMessage(t, channel, target)
+end
+
+function GLT.replaceRaid(oldRaidId, newRaid, channel, target)
+    local t = {}
+    t.Command = Statics.SerialisationCommands['MergeRaids']
+    t.oldRaidId =  oldRaidId
+    t.newRaidInfo = newRaid
+    GLT.sendMessage(t, channel, target)
+end
+
+function GLT.broadcastLootDrop(raidId, lootRecord )
+    local t = {}
+    t.Command = Statics.SerialisationCommands['BroadcastLoot']
+    t.raidId =  raidId
+    t.lootRecord = lootRecord
+    GLT.sendMessage(t, channel, target)
+
+end
 function GLT:OnCommReceived(prefix, message, distribution, sender)
   local success, t = GLT.DecodeMessage(message)
   if success then
@@ -187,19 +254,41 @@ function GLT:OnCommReceived(prefix, message, distribution, sender)
           end
           GLT.storeSender(sender, t.Version)
         elseif t.Command == Statics.SerialisationCommands['GetRaidInfo'] then
-            -- Get the full data of a raid by its ID
+            GLT.requestRaid(t.raidId)
+        elseif t.Command == Statics.SerialisationCommands['SendRaidInfo'] then
+            GLT.sendRaid(t.raidId, sender)
         elseif t.Command == Statics.SerialisationCommands['CloseRaid'] then
-            -- Close off Raid by ID
+            GLT.updateRaid(t.raidId, "endDate", t.endDate)
+            local activeRaid = GLTRaidLibrary[GLT.findRaidIndex(GLT.ActiveRaid)]
+            if activeRaid and activeRaid[id] == t.raidId then
+                GLT.ActiveRaid = nil
+            end
         elseif t.Command == Statics.SerialisationCommands['StartRaid'] then
-            -- Start a new raid
+            if GLT.isEmpty(GLT.findRaidIndex(t.raidId)) then 
+                table.insert(GLTRaidLibrary, t.raidInfo)
+            end
+            if GLT.isEmpty(t.raidInfo[endDate]) and GLT.playerInRaid(t.raidId) then
+                GLT.ActiveRaid = GLT.findRaidIndex(t.raidId)
+            end
         elseif t.Command == Statics.SerialisationCommands['ListRaids'] then
-            -- List the raids that i know about
+            GLT.checkForUnknownRaids(t.Raidlist, sender)
         elseif t.Command == Statics.SerialisationCommands['GetCurrentRaid'] then
-            -- Return the current Raid
+            local raid = GLTRaidLibrary[GLT.ActiveRaid]
+            if raid and raid.id ~= t.raidId and GLT.playerInRaid(t.raidId) then
+                GLT.ActiveRaid = GLT.findRaidIndex(t.raidId)
+            end
         elseif t.Command == Statics.SerialisationCommands['BroadcastLoot'] then
-            -- Advertise that i got loot for a raid
+            GLT.recordLootDrop(GLT.findRaidIndex(t.raidId), t.lootRecord )
         elseif t.Command == Statics.SerialisationCommands['MergeRaids'] then
-            -- Merge two raids
+            local activeRaid = GLTRaidLibrary[GLT.ActiveRaid]
+            local index = GLT.findRaidIndex(t.oldRaidInfo)
+            if index then
+                table.remove(GLTRaidLibrary, index)
+            end
+            table.insert(GLTRaidLibrary, t.newRaidIndo)
+            if activeRaid.id == t.oldRaidInfo then
+                GLT.ActiveRaid = #GLTRaidLibrary
+            end
         end
     end
   else
