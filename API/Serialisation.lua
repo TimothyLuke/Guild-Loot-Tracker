@@ -124,8 +124,6 @@ end
 -- channel is one of "PARTY", "RAID", "GUILD", "BATTLEGROUND", "WHISPER", and "CHANNEL"
 -- where channel is Whisper or Channel, target is the channelID or the target.
 function GLT.sendMessage(data, channel, target)
-  local _, instanceType = IsInInstance()
-  GLT.PrintDebugMessage(data, Statics.DebugModules["Transmission"])
   local transmission = GLT.EncodeMessage(data)
   GLT.PrintDebugMessage("Transmission: \n" .. transmission, Statics.DebugModules["Transmission"])
   if GLT.isEmpty(channel) then
@@ -137,12 +135,15 @@ function GLT.sendMessage(data, channel, target)
   else
     channel = "GUILD"
   end
+  GLT.PrintDebugMessage("Transmission:" .. transmission, Statics.DebugModules["Transmission"])
+  GLT.PrintDebugMessage("Using Channel " .. channel, Statics.DebugModules["Transmission"])
   GLT:SendCommMessage(Statics.CommPrefix, transmission, channel, target)
 
 end
 
 
 function  GLT.performVersionCheck(version)
+  GLT.PrintDebugMessage ("Perform Version Check", Statics.DebugModules["Transmission"])
   if  GLT.ParseVersion(version) ~= nil and  GLT.ParseVersion(version) >  GLT.VersionNumber then
     if not GLTOld then
       GLT.Print(L["Guild Loot Tracker is out of date. You can download the newest version from"] .. " " .. Statics.DownloadLocation)
@@ -165,6 +166,7 @@ function GLT.storeSender(sender, senderversion)
 end
 
 function  GLT.sendVersionCheck(channel)
+    GLT.PrintDebugMessage ("Send Version Check", Statics.DebugModules["Transmission"])
     local t = {}
     t.Command = Statics.SerialisationCommands['Version']
     t.Version =  GLT.VersionString
@@ -172,6 +174,7 @@ function  GLT.sendVersionCheck(channel)
 end
 
 function GLT.sendRaidInfo(raidIndex, channel, target)
+    GLT.PrintDebugMessage ("Send Raid Info", Statics.DebugModules["Transmission"])
     local t = {}
     t.Command = Statics.SerialisationCommands['SendRaidInfo']
     t.raidId =  GLTRaidLibrary[raidIndex][id]
@@ -181,6 +184,7 @@ function GLT.sendRaidInfo(raidIndex, channel, target)
 end
 
 function GLT.sendStartRaid(raidIndex, channel, target)
+    GLT.PrintDebugMessage ("Start Raid", Statics.DebugModules["Transmission"])
     local t = {}
     t.Command = Statics.SerialisationCommands['StartRaid']
     t.raidId =  GLTRaidLibrary[raidIndex][id]
@@ -190,6 +194,7 @@ function GLT.sendStartRaid(raidIndex, channel, target)
 end
 
 function GLT.sendCloseRaid(raidIndex, channel, target)
+    GLT.PrintDebugMessage ("Close Raid", Statics.DebugModules["Transmission"])
     local t = {}
     t.Command = Statics.SerialisationCommands['CloseRaid']
     t.raidId =  GLTRaidLibrary[raidIndex][id]
@@ -198,6 +203,7 @@ function GLT.sendCloseRaid(raidIndex, channel, target)
 end
 
 function GLT.sendCurrentRaid(raidIndex, channel, target)
+    GLT.PrintDebugMessage ("Send Current Raid", Statics.DebugModules["Transmission"])
     local t = {}
     t.Command = Statics.SerialisationCommands['GetCurrentRaid']
     t.raidId =  GLTRaidLibrary[raidIndex][id]
@@ -205,6 +211,7 @@ function GLT.sendCurrentRaid(raidIndex, channel, target)
 end
 
 function GLT.sendRaidList(raidIndex, channel, target)
+    GLT.PrintDebugMessage ("Send Current Raid", Statics.DebugModules["Transmission"])
     local t = {}
     t.Command = Statics.SerialisationCommands['ListRaids']
     t.raidList =  GLT.getKnownRaids()
@@ -212,6 +219,7 @@ function GLT.sendRaidList(raidIndex, channel, target)
 end
 
 function GLT.sendRaid(raidId,sender)
+    GLT.PrintDebugMessage ("Send Raid", Statics.DebugModules["Transmission"])
     local raid = GLTRaidLibrary[GLT.findRaidIndex(raidId)]
     if not GLT.isEmpty(raid) then
         GLT.sendRaidInfo(GLTRaidLibrary[GLT.findRaidIndex(raidId)], "WHISPER", target)
@@ -219,6 +227,7 @@ function GLT.sendRaid(raidId,sender)
 end
 
 function GLT.requestRaid(raidId, channel, target)
+    GLT.PrintDebugMessage ("Request Raid", Statics.DebugModules["Transmission"])
     local t = {}
     t.Command = Statics.SerialisationCommands['ListRaids']
     t.raidId =  raidId
@@ -226,6 +235,7 @@ function GLT.requestRaid(raidId, channel, target)
 end
 
 function GLT.replaceRaid(oldRaidId, newRaid, channel, target)
+    GLT.PrintDebugMessage ("Replace Raid", Statics.DebugModules["Transmission"])
     local t = {}
     t.Command = Statics.SerialisationCommands['MergeRaids']
     t.oldRaidId =  oldRaidId
@@ -234,6 +244,7 @@ function GLT.replaceRaid(oldRaidId, newRaid, channel, target)
 end
 
 function GLT.broadcastLootDrop(raidId, lootRecord )
+    GLT.PrintDebugMessage ("Loop Drop", Statics.DebugModules["Transmission"])
     local t = {}
     t.Command = Statics.SerialisationCommands['BroadcastLoot']
     t.raidId =  raidId

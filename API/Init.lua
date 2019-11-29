@@ -1,5 +1,6 @@
 GLT = LibStub("AceAddon-3.0"):NewAddon("GLT", "AceConsole-3.0", "AceEvent-3.0", "AceComm-3.0", "AceSerializer-3.0", "AceTimer-3.0")
 GLT.L = LibStub("AceLocale-3.0"):GetLocale("GLT")
+local L = GLT.L
 
 GLT.VersionString = GetAddOnMetadata("guild-loot-tracker", "Version");
 GLT.Static = {}
@@ -37,6 +38,7 @@ function GLT.Print(message, title)
   if not GLT.isEmpty(title) then
     message = GLTOptions.CommandColour .. title .. Statics.StringReset .." " .. message
   end
+  message = Statics.GLTPrefix .. message
   table.insert(GLT.OutputQueue, message)
   if GLT.PrintAvailable then
     GLT.PerformPrint()
@@ -48,12 +50,10 @@ end
 --    is currently enabled.
 function GLT.PrintDebugMessage(message, module)
     if GLT.isEmpty(module) then
-      module = "GS-Core"
+      module = "GLT Core"
     end
-    if module == Statics.SequenceDebug then
-      determinationOutputDestination(message, GLTOptions.CommandColour .. GNOME .. ':|r ' .. GLTOptions.AuthorColour .. L["<SEQUENCEDEBUG> |r "] )
-    elseif GLTOptions.debug and module ~= GSStaticSequenceDebug and GLTOptions.DebugModules[module] == true then
-      determinationOutputDestination(GLTOptions.CommandColour .. (GLT.isEmpty(module) and GNOME or module) .. ':|r ' .. GLTOptions.AuthorColour .. L["<DEBUG> |r "] .. message )
+    if GLTOptions.debug and GLTOptions.DebugModules[module] == true then
+      GLT.Print(GLTOptions.CommandColour .. module .. ':|r ' .. GLTOptions.AuthorColour .. "<DEBUG> |r " .. message )
     end
 end
 

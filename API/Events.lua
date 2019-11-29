@@ -32,7 +32,15 @@ function GLT:ADDON_LOADED(event, addon)
         desc = L["This will display debug messages for the "] .. k,
         type = "toggle",
         set = function(info,val) GLTOptions.DebugModules[k] = val end,
-        get = function(info) return GLTOptions.DebugModules[k] end,
+        get = function(info) 
+          if GLT.isEmpty(GLTOptions.DebugModules) then
+            GLTOptions.DebugModules = {}
+          end
+          if GLT.isEmpty(GLTOptions.DebugModules[k]) then
+            GLTOptions.DebugModules[k] = false
+          end
+          return GLTOptions.DebugModules[k] 
+        end,
         order = ord
       }
     end
@@ -42,9 +50,8 @@ function GLT:ADDON_LOADED(event, addon)
 		LibStub("AceConfigDialog-3.0"):AddToBlizOptions(GLTAddon, Statics.GLTPrefix .. L["Guild Loot Tracker"])
 		if  GLT.isEmpty(GLTOptions) then
 			GLT.SetDefaultOptions()
-
 		end
-		GLT.Print(Statics.GLTPrefix .. GLTOptions.AuthorColour .. L["Guild Loot Tracker"] .. Statics.StringReset .. " Version " .. GLT.VersionString .. " loaded.")
+		GLT.Print(GLTOptions.AuthorColour .. L["Guild Loot Tracker"] .. Statics.StringReset .. " Version " .. GLT.VersionString .. " loaded.")
 		if GLT.isEmpty(LootHistory) then
 			LootHistory = {}
 		end
