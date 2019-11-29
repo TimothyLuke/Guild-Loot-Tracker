@@ -23,6 +23,19 @@ function GLT:GROUP_ROSTER_UPDATE(...)
 end
 
 function GLT:ADDON_LOADED(event, addon)
+    -- Add dynamic options
+    local ord = 30
+    for k,v in pairs(GLTOptions.DebugModules) do
+      ord = ord + 1
+      GLT.OptionsTable.args.debugTab.args[k] = {
+        name = k,
+        desc = L["This will display debug messages for the "] .. k,
+        type = "toggle",
+        set = function(info,val) GLTOptions.DebugModules[k] = val end,
+        get = function(info) return GLTOptions.DebugModules[k] end,
+        order = ord
+      }
+    end
 
 	if addon == GLTAddon then
 		LibStub("AceConfig-3.0"):RegisterOptionsTable(GLTAddon, GLT.OptionsTable, {"glt"})
@@ -46,18 +59,6 @@ function GLT:PLAYER_ENTERING_WORLD()
   GLT.PerformOneOffEvents()
   GLT.PrintAvailable = true
   GLT.PerformPrint()
-  local ord = 30
-  for k,v in pairs(GLTOptions.DebugModules) do
-    ord = ord + 1
-    GLT.OptionsTable.args.debugTab.args[k] = {
-      name = k,
-      desc = L["This will display debug messages for the "] .. k,
-      type = "toggle",
-      set = function(info,val) GLTOptions.DebugModules[k] = val end,
-      get = function(info) return GLTOptions.DebugModules[k] end,
-      order = ord
-    }
-  end
 end
 
 
