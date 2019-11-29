@@ -32,14 +32,14 @@ function GLT:ADDON_LOADED(event, addon)
         desc = L["This will display debug messages for the "] .. k,
         type = "toggle",
         set = function(info,val) GLTOptions.DebugModules[k] = val end,
-        get = function(info) 
+        get = function(info)
           if GLT.isEmpty(GLTOptions.DebugModules) then
             GLTOptions.DebugModules = {}
           end
           if GLT.isEmpty(GLTOptions.DebugModules[k]) then
             GLTOptions.DebugModules[k] = false
           end
-          return GLTOptions.DebugModules[k] 
+          return GLTOptions.DebugModules[k]
         end,
         order = ord
       }
