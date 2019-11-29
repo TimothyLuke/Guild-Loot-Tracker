@@ -12,6 +12,7 @@ StaticPopupDialogs = {}
 LootHistory = {}
 
 L["Guild Loot Tracker is out of date. You can download the newest version from"] = "Guild Loot Tracker is out of date. You can download the newest version from"
+L["Guild Loot Tracker Options"] = "Guild Loot Tracker Options"
 
 -- Mock Character Functions
 function GetTalentTierInfo(tier, ...)
