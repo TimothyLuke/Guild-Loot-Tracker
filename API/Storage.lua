@@ -147,5 +147,3 @@ function GLT.updateRaid(raidId, field, value)
     GLTRaidLibrary[GLT.findRaidIndex(raidId)][field] = value
     GLTRaidLibrary[GLT.findRaidIndex(raidId)]["lastUpdated"] = getServerTime()
 end
-
-function deleteRaid()
