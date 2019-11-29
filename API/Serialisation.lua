@@ -291,8 +291,8 @@ function GLT:OnCommReceived(prefix, message, distribution, sender)
             end
         end
     end
-  else
-    print(t.command)
+  -- else
+  --   print(t.command)
   end
 end
 
