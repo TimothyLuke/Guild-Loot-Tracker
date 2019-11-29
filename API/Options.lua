@@ -23,6 +23,10 @@ function GLT.SetDefaultOptions()
 	GLTOptions.STANDARDFUNCS = "|cff55ddcc"
 	GLTOptions.WOWSHORTCUTS = "|cffddaaff"
 	GLTOptions.LootThreshold = 3
+	GSEOptions.DebugModules = {}
+	for k,v in ipairs(Statics.DebugModules) do
+		GLTOptions.DebugModules[Statics.DebugModules[k]] = false
+	end
 end
 
 GLT.OptionsTable = {
@@ -357,12 +361,25 @@ GLT.OptionsTable = {
 	          --   get = function(info) return GLTOptions.DebugPrintModConditionsOnKeyPress end,
 	          --   order = 26
 	          -- },
-	          -- title6= {
-	          --   type = "header",
-	          --   name = L["Enable Debug for the following Modules"],
-	          --   order = 30
-	          -- },
+	          title6= {
+	            type = "header",
+	            name = L["Enable Debug for the following Modules"],
+	            order = 30
+	          },
 	        }
 	    }
 	}
 }
+
+local ord = 30
+for k,v in pairs(GLTOptions.DebugModules) do
+	ord = ord + 1
+	GLT.OptionsTable.args.debugTab.args[k] = {
+		name = k,
+		desc = L["This will display debug messages for the "] .. k,
+		type = "toggle",
+		set = function(info,val) GLTOptions.DebugModules[k] = val end,
+		get = function(info) return GLTOptions.DebugModules[k] end,
+		order = ord
+	}
+end

@@ -31,7 +31,7 @@ function GLT:ADDON_LOADED(event, addon)
 			GLT.SetDefaultOptions()
 
 		end
-		print(L["|cffff00FFGLT:|r Guild Loot Tracker"], "Version ", GLT.VersionString, " loaded.")
+		GLT.Print(L["|cffff00FFGLT:|r Guild Loot Tracker"], "Version ", GLT.VersionString, " loaded.")
 		if GLT.isEmpty(LootHistory) then
 			LootHistory = {}
 		end
@@ -41,6 +41,13 @@ end
 -- function GLT:CommandLine(input)
 -- 	print("Got: ", input)
 -- end
+
+function GLT:PLAYER_ENTERING_WORLD()
+  GLT.PerformOneOffEvents()
+  GLT.PrintAvailable = true
+  GLT.PerformPrint()
+end
+
 
 function GLT:CHAT_MSG_LOOT(...)
 	-- print("Got Here")
@@ -114,3 +121,4 @@ GLT:RegisterEvent('GUILD_ROSTER_UPDATE')
 GLT:RegisterEvent('ZONE_CHANGED')
 GLT:RegisterEvent('ZONE_CHANGED_INDOORS')
 GLT:RegisterEvent('ZONE_CHANGED_NEW_AREA')
+GLT:RegisterEvent('PLAYER_ENTERING_WORLD')

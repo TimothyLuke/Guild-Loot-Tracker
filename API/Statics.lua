@@ -86,6 +86,14 @@ Statics.SerialisationCommands = {
     ['SendRaidInfo'] = "GLT_SendRaidINFO"
 }
 
+Statics.DebugModules = {
+    ["Storage"] = "Storage",
+    ["Transmission"] = "Transmission",
+    ["Events"] = "Events",
+    ["GUI"] = "GUI",
+    ["Export"] = "Export"
+}
+
 Statics.RaidZones = {
     [249] = true, -- Onyxia's Lair
 	[409] = true, -- Molten Core

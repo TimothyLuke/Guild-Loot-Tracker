@@ -104,18 +104,18 @@ function  GLT.DecodeMessage(data)
   -- Decompress the decoded data
   local two, message = libC:Decompress(one)
   if(not two) then
---     GLT.PrintDebugMessage ("Error decompressing: " .. message, Statics.SourceTransmission)
+    GLT.PrintDebugMessage ("Error decompressing: " .. message, Statics.DebugModules["Transmission"])
     return
   end
 
   -- Deserialize the decompressed data
   local success, final = libS:Deserialize(two)
   if (not success) then
---     GLT.PrintDebugMessage ("Error deserializing " .. final, Statics.SourceTransmission)
+    GLT.PrintDebugMessage ("Error deserializing " .. final, Statics.DebugModules["Transmission"])
     return
   end
 
-  -- GLT.PrintDebugMessage ("Data Finalised", Statics.SourceTransmission)
+  GLT.PrintDebugMessage ("Data Finalised", Statics.DebugModules["Transmission"])
   return success, final
 end
 
@@ -125,14 +125,9 @@ end
 -- where channel is Whisper or Channel, target is the channelID or the target.
 function GLT.sendMessage(data, channel, target)
   local _, instanceType = IsInInstance()
-  -- GLT.PrintDebugMessage(tab.Command, Statics.SourceTransmission)
-  -- if tab.Command == "GLT_TRANSMITSEQUENCE" then
-  --   GLT.PrintDebugMessage(tab.SequenceName, Statics.SourceTransmission)
-  --   GLT.PrintDebugMessage(GLT.isEmpty(tab.Sequence))
-  --   GLT.PrintDebugMessage(GLT.ExportSequence(tab.Sequence,tab.SequenceName), Statics.SourceTransmission)
-  -- end
+  GLT.PrintDebugMessage(tab.Command, Statics.DebugModules["Transmission"])
   local transmission = GLT.EncodeMessage(data)
-  -- GLT.PrintDebugMessage("Transmission: \n" .. transmission, Statics.SourceTransmission)
+  GLT.PrintDebugMessage("Transmission: \n" .. transmission, Statics.DebugModules["Transmission"])
   if GLT.isEmpty(channel) then
     if IsInRaid() then
       channel = (not IsInRaid(LE_PARTY_CATEGORY_HOME) and IsInRaid(LE_PARTY_CATEGORY_INSTANCE)) and "INSTANCE_CHAT" or "RAID"
@@ -150,7 +145,7 @@ end
 function  GLT.performVersionCheck(version)
   if  GLT.ParseVersion(version) ~= nil and  GLT.ParseVersion(version) >  GLT.VersionNumber then
     if not GLTOld then
-      print(L["Guild Loot Tracker is out of date. You can download the newest version from"] .. " " .. Statics.DownloadLocation)
+      GLT.Print(L["Guild Loot Tracker is out of date. You can download the newest version from"] .. " " .. Statics.DownloadLocation)
       GLTOld = true
       if( GLT.ParseVersion(version) -  GLT.VersionNumber >= 5) then
         StaticPopup_Show('GLT_UPDATE_AVAILABLE')
@@ -160,6 +155,9 @@ function  GLT.performVersionCheck(version)
 end
 
 function GLT.storeSender(sender, senderversion)
+    if sender and senderversion then 
+        GLT.PrintDebugMessage("Sender: " + sender + " version: " + senderversion, Statics.DebugModules["Transmission"])
+    end
     if GLT.isEmpty(GLT.UnsavedOptions["PartyUsers"]) then
         GLT.UnsavedOptions["PartyUsers"] = {}
     end
@@ -167,7 +165,6 @@ function GLT.storeSender(sender, senderversion)
 end
 
 function  GLT.sendVersionCheck(channel)
-    local _, instanceType = IsInInstance()
     local t = {}
     t.Command = Statics.SerialisationCommands['Version']
     t.Version =  GLT.VersionString
@@ -248,6 +245,7 @@ function GLT:OnCommReceived(prefix, message, distribution, sender)
   local success, t = GLT.DecodeMessage(message)
   if success then
     if sender ~= GetUnitName("player", true) then
+        GLT.PrintDebugMessage(t.Command .." received from " .. sender .. " via " .. distribution, Statics.DebugModules["Transmission"])
         if t.Command == Statics.SerialisationCommands['Version'] then
           if not GLTOld then
             GLT.performVersionCheck(t.Version)
@@ -291,8 +289,8 @@ function GLT:OnCommReceived(prefix, message, distribution, sender)
             end
         end
     end
-  -- else
-  --   print(t.command)
+  else
+    GLT.PrintDebugMessage(t.Command .." received from you via " .. distribution, Statics.DebugModules["Transmission"])
   end
 end
 
