@@ -157,7 +157,7 @@ end
 
 function GLT.storeSender(sender, senderversion)
     if sender and senderversion then
-        GLT.PrintDebugMessage("Sender: " + sender + " version: " + senderversion, Statics.DebugModules["Transmission"])
+        GLT.PrintDebugMessage("Sender: " .. sender .. " version: " .. senderversion, Statics.DebugModules["Transmission"])
     end
     if GLT.isEmpty(GLT.UnsavedOptions["PartyUsers"]) then
         GLT.UnsavedOptions["PartyUsers"] = {}
