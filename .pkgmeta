@@ -1,60 +1,54 @@
 package-as: guild-loot-tracker
 
 externals:
-    Lib/LibStub:
-        url: svn://svn.wowace.com/wow/libstub/mainline/trunk
-        tag: latest
-    Lib/AceAddon-3.0:
-        url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceAddon-3.0
-        tag: latest
-    Lib/AceLocale-3.0:
-        url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceLocale-3.0
-        tag: latest
-    Lib/AceEvent-3.0:
-        url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceEvent-3.0
-        tag: latest
-    Lib/CallbackHandler-1.0:
-        url: svn://svn.wowace.com/wow/callbackhandler/mainline/trunk/CallbackHandler-1.0
-        tag: latest
-    Lib/AceConfig-3.0:
-        url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceConfig-3.0
-        tag: latest
-    Lib/AceConsole-3.0:
-        url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceConsole-3.0
-        tag: latest
-    Lib/AceSerializer-3.0:
-        url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceSerializer-3.0
-        tag: latest
-    Lib/AceComm-3.0:
-        url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceComm-3.0
-        tag: latest
-    Lib/AceGUI-3.0:
-        url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceGUI-3.0
-        tag: latest
-    Lib/AceTimer-3.0:
-        url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceTimer-3.0
-        tag: latest
-    Lib/LibCompress:
-        url: svn://svn.wowace.com/wow/libcompress/mainline/trunk
-        tag: latest
-    Lib/LibDataBroker-1.1:
-        url: git://git.wowace.com/wow/libdatabroker-1-1/mainline.git
-        tag: latest
-    Lib/AceGUI-3.0-Completing-EditBox:
-        url: svn://svn.wowace.com/wow/acegui-3-0-completing-editbox/mainline/trunk
-        tag: latest
-    Lib/LibQTip-1.0:
-        url: svn://svn.wowace.com/wow/libqtip-1-0/mainline/trunk
-        tag: latest
-    Lib/LibSharedMedia-3.0:
-        url: svn://svn.wowace.com/wow/libsharedmedia-3-0/mainline/trunk
-        tag: latest
-    Lib/AceGUI-3.0-Selectable-Panel:
-        url: https://github.com/TimothyLuke/AceGUI-3.0-Selectable-Panel.git
-        tag: latest
-    Lib/LibDBIcon-1.0:
-        url: https://repos.wowace.com/wow/libdbicon-1-0/trunk
-        tag: latest
+  Lib/LibStub:
+    url: svn://svn.wowace.com/wow/libstub/mainline/trunk
+    tag: latest
+  Lib/AceAddon-3.0:
+    url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceAddon-3.0
+    tag: latest
+  Lib/AceLocale-3.0:
+    url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceLocale-3.0
+    tag: latest
+  Lib/AceEvent-3.0:
+    url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceEvent-3.0
+    tag: latest
+  Lib/CallbackHandler-1.0:
+    url: svn://svn.wowace.com/wow/callbackhandler/mainline/trunk/CallbackHandler-1.0
+    tag: latest
+  Lib/AceConfig-3.0:
+    url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceConfig-3.0
+    tag: latest
+  Lib/AceConsole-3.0:
+    url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceConsole-3.0
+    tag: latest
+  Lib/AceSerializer-3.0:
+    url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceSerializer-3.0
+    tag: latest
+  Lib/AceComm-3.0:
+    url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceComm-3.0
+    tag: latest
+  Lib/AceGUI-3.0:
+    url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceGUI-3.0
+    tag: latest
+  Lib/AceTimer-3.0:
+    url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceTimer-3.0
+    tag: latest
+  Lib/LibCompress:
+    url: svn://svn.wowace.com/wow/libcompress/mainline/trunk
+    tag: latest
+  Lib/LibDataBroker-1.1:
+    url: git://git.wowace.com/wow/libdatabroker-1-1/mainline.git
+    tag: latest
+  Lib/AceGUI-3.0-Completing-EditBox:
+    url: svn://svn.wowace.com/wow/acegui-3-0-completing-editbox/mainline/trunk
+    tag: latest
+  Lib/LibQTip-1.0: git://git.wowace.com/wow/libqtip-1-0
+  Lib/LibSharedMedia-3.0: https://repos.wowace.com/wow/libsharedmedia-3-0/trunk/LibSharedMedia-3.0
+  Lib/AceGUI-3.0-Selectable-Panel:
+    url: https://github.com/TimothyLuke/AceGUI-3.0-Selectable-Panel.git
+    tag: latest
+  Lib/LibDBIcon-1.0: https://repos.wowace.com/wow/libdbicon-1-0/trunk/LibDBIcon-1.0
 
 # move-folders:
 #    GSE/GSE: GSE
@@ -62,17 +56,15 @@ externals:
 #    GSE/GSE_LDB: GSE_LDB
 #    Lib2/LibDBIcon-1.0/LibDBIcon-1.0: Lib/LibDBIcon-1.0
 
-
 enable-nolib-creation: no
 
 ignore:
-    - .travis.yml
-    - README.md
-    - spec
-    - docs
-    - deploy.sh
-    - GSE/tmp
-    - out
+  - .travis.yml
+  - README.md
+  - spec
+  - docs
+  - deploy.sh
+  - GSE/tmp
+  - out
 
-
-wowi-archive-previous : no
+wowi-archive-previous: no
