@@ -24,7 +24,7 @@ function GLT.SetDefaultOptions()
 	GLTOptions.WOWSHORTCUTS = "|cffddaaff"
 	GLTOptions.LootThreshold = 3
 	GLTOptions.DebugModules = {}
-	for k, v in ipairs(Statics.DebugModules) do
+	for k, _ in ipairs(Statics.DebugModules) do
 		GLTOptions.DebugModules[Statics.DebugModules[k]] = false
 	end
 end
@@ -347,7 +347,7 @@ GLT.OptionsTable = {
 					type = "toggle",
 					set = function(info, val)
 						GLTOptions.debug = val
-						GSE.PrintDebugMessage("Debug Mode Enabled", GNOME)
+						GLT.PrintDebugMessage("Debug Mode Enabled", Statics.DebugModules["Events"])
 					end,
 					get = function(info)
 						return GLTOptions.debug

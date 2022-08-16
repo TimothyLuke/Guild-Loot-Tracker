@@ -18,13 +18,13 @@ function GLT.logLootDrop(player, itemLink, quality, instanceID, bossID)
     }
 
     GLT.recordLootDrop(GLTRaidLibrary[GLT.ActiveRaid]["id"], lootRecord)
-    GLT.broadcastLootDrop(GLTRaidLibrary[raidIndex]["id"], lootRecord)
+    GLT.broadcastLootDrop(GLTRaidLibrary[GLT.ActiveRaid]["id"], lootRecord)
 end
 
 function GLT.recordLootDrop(raidIndex, lootRecord)
     local index = lootRecord["instanceID"] + "-" + lootRecord["player"] + "-" + lootRecord["itemLink"]
     GLTRaidLibrary[raidIndex]["loot"][index] = lootRecord
-    GLTRaidLibrary[GLT.findRaidIndex(raidId)]["lastUpdated"] = getServerTime()
+    GLTRaidLibrary[GLT.findRaidIndex(raidIndex)]["lastUpdated"] = GetServerTime()
 end
 
 function GLT.checkInstance()
@@ -93,7 +93,7 @@ function GLT.OpenRaid(instanceMapId)
     local player = UnitName("player")
     local currentTime = GetServerTime()
     local server = GetNormalizedRealmName()
-    RaidSchema = {
+    local RaidSchema = {
         ["id"] = server .. "-" .. instanceMapId .. "-" .. currentTime .. "-" .. player,
         ["instanceMapId"] = instanceMapId,
         ["startDate"] = currentTime,
@@ -127,7 +127,7 @@ end
 
 function GLT.getKnownRaids()
     local list = {}
-    for k, v in ipairs(GLTRaidLibrary) do
+    for _, v in ipairs(GLTRaidLibrary) do
         table.insert(list, v.id)
     end
     return list
@@ -146,7 +146,7 @@ end
 
 function GLT.checkForUnknownRaids(list, sender)
     -- check if sender in guild?
-    for k, v in ipairs(list) do
+    for _, v in ipairs(list) do
         local index = GLT.findRaidIndex(v.id)
         if GLT.isEmpty(index) then
             GLT.requestRaid(v.id, "WHISPER", sender)

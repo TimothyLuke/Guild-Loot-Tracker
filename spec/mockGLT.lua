@@ -1,7 +1,7 @@
 GLT = {}
 GLT.L = {}
 GLT.Static = {}
-GLT.VersionString = "2.0.00-18-g95ecb41";
+GLT.VersionString = "2.0.00-18-g95ecb41"
 
 L = GLT.L
 
@@ -9,9 +9,10 @@ GNOME = "UnitTest"
 
 StaticPopupDialogs = {}
 
-LootHistory = {}
+-- LootHistory = {}
 
-L["Guild Loot Tracker is out of date. You can download the newest version from"] = "Guild Loot Tracker is out of date. You can download the newest version from"
+L["Guild Loot Tracker is out of date. You can download the newest version from"] =
+  "Guild Loot Tracker is out of date. You can download the newest version from"
 L["Guild Loot Tracker Options"] = "Guild Loot Tracker Options"
 
 -- Mock Character Functions
@@ -48,7 +49,7 @@ function GetUnitName(str)
 end
 
 function GetSpellInfo(spellstring)
-  print( "GetSpellInfo -- " .. spellstring)
+  print("GetSpellInfo -- " .. spellstring)
   local name, rank, icon, castTime, minRange, maxRange, spellId
   if type(spellstring) == "string" then
     name = spellstring
@@ -57,13 +58,13 @@ function GetSpellInfo(spellstring)
     name = "Eye of Tyr"
     spellId = spellstring
   end
-  print( "GetSpellInfo " .. name .. spellId)
+  print("GetSpellInfo " .. name .. spellId)
   return name, rank, icon, castTime, minRange, maxRange, spellId
 end
 
 -- Mock Standard Functions
 function GLT.Print(message, title)
-  print (title .. ": " .. message)
+  print(title .. ": " .. message)
 end
 
 function GLT.PrintDebugMessage(message, title)
@@ -71,14 +72,20 @@ function GLT.PrintDebugMessage(message, title)
 end
 
 function GLT.isEmpty(s)
-  return s == nil or s == ''
+  return s == nil or s == ""
 end
 
 --- Split a string into an array based on the delimiter specified.
 function GLT.split(source, delimiters)
   local elements = {}
-  local pattern = '([^'..delimiters..']+)'
-  string.gsub(source, pattern, function(value) elements[#elements + 1] =     value;  end);
+  local pattern = "([^" .. delimiters .. "]+)"
+  string.gsub(
+    source,
+    pattern,
+    function(value)
+      elements[#elements + 1] = value
+    end
+  )
   return elements
 end
 
@@ -91,7 +98,7 @@ function GLT.ParseVersion(version)
     returnVal = version
   else
     if table.getn(numbers) > 1 then
-      returnVal = (tonumber(numbers[1]) * 1000) + (tonumber(numbers[2]) * 100) + (tonumber(numbers[3]) )
+      returnVal = (tonumber(numbers[1]) * 1000) + (tonumber(numbers[2]) * 100) + (tonumber(numbers[3]))
     else
       returnVal = tonumber(version)
     end
@@ -99,21 +106,23 @@ function GLT.ParseVersion(version)
   return tonumber(returnVal)
 end
 
-
-
 function strmatch(string, pattern, initpos)
   return string.match(string, pattern, initpos)
 end
 
 function newLocale(application, locale, isDefault, silent)
-  local writedefaultproxy = setmetatable({}, {
-    __newindex = function(self, key, value)
-      if not rawget(registering, key) then
-        rawset(registering, key, value == true and key or value)
-      end
-    end,
-    __index = assertfalse
-  })
+  local writedefaultproxy =
+    setmetatable(
+    {},
+    {
+      __newindex = function(self, key, value)
+        if not rawget(registering, key) then
+          rawset(registering, key, value == true and key or value)
+        end
+      end,
+      __index = assertfalse
+    }
+  )
   if isDefault then
     return writedefaultproxy
   end
@@ -122,7 +131,6 @@ end
 function GetLocale()
   return "enUS"
 end
-
 
 classic = "1.13.2 12345 Aug 10 2019 11302"
 retail = "8.2.0 31429 Aug 7 2019 80200"
@@ -139,4 +147,3 @@ end
 function setRetail()
   currentver = retail
 end
-

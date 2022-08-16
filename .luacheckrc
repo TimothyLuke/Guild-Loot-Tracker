@@ -380,5 +380,7 @@ globals = {
     "BNGetFriendGameAccountInfo",
     "ChatFrame_AddMessageEventFilter",
     "LoadAddOn",
-    "GetUnitName"
+    "GetUnitName",
+    "GetServerTime",
+    "GetNormalizedRealmName"
 }
