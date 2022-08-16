@@ -31,11 +31,11 @@ function GLT.checkInstance()
     local name, type, difficultyIndex, difficultyName, maxPlayers, dynamicDifficulty, isDynamic, instanceMapId, lfgID =
         GetInstanceInfo()
     local isRaid = (type == "raid") and true or false
-    if isRaid then
-        if not Statics.RaidZones[instanceMapId] then
-            isRaid = false
-        end
-    end
+    -- if isRaid then
+    --     if not Statics.RaidZones[instanceMapId] then
+    --         isRaid = false
+    --     end
+    -- end
     if GLT.includeGroup then
         if type == "party" or type == "raid" then
             isRaid = true
@@ -46,11 +46,6 @@ end
 
 function GLT.ManageRaid()
     local isRaid, instanceMapId, type, maxPlayers, name = GLT.checkInstance()
-    if GLT.includeGroup then
-        if type == "party" or type == "raid" then
-            isRaid = true
-        end
-    end
     if GLT.ActiveRaid and isRaid then
         return GLT.ActiveRaid
     elseif GLT.ActiveRaid and not isRaid then
