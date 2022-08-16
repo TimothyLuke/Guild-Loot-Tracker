@@ -41,7 +41,9 @@ L["About Guild Loot Tracker"] = true
 L["History"] = true
 L["Guild Loot Tracker was written to track loot over multiple raid groups by TimothyLuke."] = true
 L["Supporters"] = true
-L["The following people donate monthly via Patreon for the ongoing maintenance and development of Guild Loot Tracker.  Their support is greatly appreciated."] = true
+L[
+        "The following people donate monthly via Patreon for the ongoing maintenance and development of Guild Loot Tracker.  Their support is greatly appreciated."
+    ] = true
 L["Debug"] = true
 L["Debug Mode Options"] = true
 L["Enable Mod Debug Mode"] = true
@@ -51,7 +53,7 @@ L["Display debug messages in Chat Window"] = true
 L["This will display debug messages in the Chat window."] = true
 L["Grey"] = true
 L["White"] = true
-L['Green'] = true
+L["Green"] = true
 L["Blue"] = true
 L["Epic"] = true
 L["Legendary"] = true
@@ -62,3 +64,5 @@ L["Guild Loot Tracker is out of date. You can download the newest version from"]
 L["Enable Debug for the following Modules"] = true
 L["This will display debug messages for the "] = true
 --
+L["Track Groups"] = true
+L["Should this track Groups as well as raids"] = true

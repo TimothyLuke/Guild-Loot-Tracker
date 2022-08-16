@@ -1,9 +1,10 @@
-#@retail@
-## Interface: 80205
-#@end-retail@
-#@non-retail@
-# ## Interface: 11302
-#@end-non-retail@
+## Interface: 90205
+
+## Interface-Retail: 90205
+## Interface-Classic: 11403
+## Interface-BCC: 20504
+## Interface-Wrath: 30400
+
 ## Title: |cffff00FFGLT:|r |cFF00D1FFGuild Loot Tracker|r
 ## Notes: Syncs loot drops from raids through the guild.
 ## Author: TimothyLuke
@@ -17,9 +18,7 @@
 # Lib
 embeds.xml
 Lib\LibQTip-1.0\LibQTip-1.0.lua
-# Lib\AceGUI-3.0-Completing-EditBox\AceGUI-3.0-Completing-EditBox.lua
 Lib\LibSharedMedia-3.0\LibSharedMedia-3.0\LibSharedMedia-3.0.lua
-# Lib\AceGUI-3.0-Selectable-Panel\AceGUI-3.0-Selectable-Panel.lua
 
 # Setup Localization
 Localization\ModL_enUS.lua

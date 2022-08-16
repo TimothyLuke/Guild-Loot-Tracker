@@ -55,6 +55,9 @@ function GLT:ADDON_LOADED(event, addon)
 		if GLT.isEmpty(LootHistory) then
 			LootHistory = {}
 		end
+    if GLT.isEmpty(GLTRaidLibrary) then
+      GLTRaidLibrary = {}
+    end
 	end
 end
 
