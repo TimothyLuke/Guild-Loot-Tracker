@@ -180,6 +180,7 @@ function GLT.GUIGetColour(option)
 end
 
 function GLT.GUISetColour(option, r, g, b)
+  GLT.PrintDebugMessage("Incoming Option " .. option, "Events")
   option = string.format("|c%02x%02x%02x%02x", 255, r * 255, g * 255, b * 255)
   return option
 end
