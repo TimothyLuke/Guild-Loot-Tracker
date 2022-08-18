@@ -7,8 +7,9 @@ function GLT.logLootDrop(player, itemLink, quality, instanceID, bossID)
     if not Statics.Encounters[bossID] then
         bossID = 0
     end
-    local itemName = string.match(itemLink, "item[%-?%d:]+")
-
+    local itemName = GetItemInfo(itemLink)
+    itemName = string.gsub(" " .. itemName, "%W%l", string.upper):sub(2)
+    GLT.PrintDebugMessage("itemName: " .. itemName, Statics.DebugModules["Storage"])
     local lootRecord = {
         ["timestamp"] = GetServerTime(),
         ["instanceID"] = instanceID,
@@ -29,8 +30,10 @@ end
 function GLT.recordLootDrop(raidIndex, lootRecord)
     local lootIndex = lootRecord["instanceID"] .. "-" .. lootRecord["player"] .. "-" .. lootRecord["itemName"]
     GLT.PrintDebugMessage("lootIndex: " .. lootIndex, Statics.DebugModules["Storage"])
-    GLTRaidLibrary[raidIndex].loot[lootIndex] = lootRecord
-    GLTRaidLibrary[raidIndex]["lastUpdated"] = GetServerTime()
+    GLT.PrintDebugMessage("raidIndex: " .. raidIndex, Statics.DebugModules["Storage"])
+
+    GLTRaidLibrary[GLT.FindRaidIndex(raidIndex)].loot[lootIndex] = lootRecord
+    GLTRaidLibrary[GLT.FindRaidIndex(raidIndex)]["lastUpdated"] = GetServerTime()
 end
 
 function GLT.checkInstance()
@@ -78,7 +81,7 @@ function GLT.CloseRaid(raidIndex)
     GLT.PrintDebugMessage("GLT Raid Index: " .. raidIndex, Statics.DebugModules["Storage"])
     GLTRaidLibrary[raidIndex]["endDate"] = GetServerTime()
     GLT.sendCloseRaid(raidIndex)
-    local activeRaid = GLTRaidLibrary[GLT.findRaidIndex(GLT.ActiveRaid)]
+    local activeRaid = GLTRaidLibrary[GLT.FindRaidIndex(GLT.ActiveRaid)]
     if activeRaid and activeRaid["id"] == raidIndex then
         GLT.ActiveRaid = nil
     end
@@ -123,7 +126,7 @@ end
 
 function GLT.receiveRaid(raidId, raidInfo)
     -- see if raidId exists.
-    local raidIndex = GLT.findRaidIndex(raidId)
+    local raidIndex = GLT.FindRaidIndex(raidId)
     -- if not add the raid
     if GLT.isEmpty(raidIndex) then
         table.insert(GLTRaidLibrary, raidInfo)
@@ -135,7 +138,7 @@ function GLT.receiveRaid(raidId, raidInfo)
     end
     -- if it does and you are in the same raid make it active
     if GLT.isEmpty(raidInfo["endDate"]) and GLT.playerInRaid(raidId) then
-        GLT.ActiveRaid = GLT.findRaidIndex(raidId)
+        GLT.ActiveRaid = GLT.FindRaidIndex(raidId)
     end
 end
 
@@ -148,7 +151,7 @@ function GLT.getKnownRaids()
 end
 
 function GLT.playerInRaid(raidId)
-    local raid = GLTRaidLibrary[GLT.findRaidIndex(raidId)]
+    local raid = GLTRaidLibrary[GLT.FindRaidIndex(raidId)]
     local set = {}
     local player = UnitName("player")
     for k, v in ipairs(raid["members"]) do
@@ -161,23 +164,23 @@ end
 function GLT.checkForUnknownRaids(list, sender)
     -- check if sender in guild?
     for _, v in ipairs(list) do
-        local index = GLT.findRaidIndex(v.id)
+        local index = GLT.FindRaidIndex(v.id)
         if GLT.isEmpty(index) then
             GLT.requestRaid(v.id, "WHISPER", sender)
         end
     end
 end
 
-function GLT.findRaidIndex(raidId)
+function GLT.FindRaidIndex(raidId)
     local set = {}
     for k, v in ipairs(GLTRaidLibrary) do
-        local id = v.id
-        set[id] = k
+        if v.id == raidId then
+            return k
+        end
     end
-    return (set[raidId])
 end
 
 function GLT.updateRaid(raidId, field, value)
-    GLTRaidLibrary[GLT.findRaidIndex(raidId)][field] = value
-    GLTRaidLibrary[GLT.findRaidIndex(raidId)]["lastUpdated"] = GetServerTime()
+    GLTRaidLibrary[GLT.FindRaidIndex(raidId)][field] = value
+    GLTRaidLibrary[GLT.FindRaidIndex(raidId)]["lastUpdated"] = GetServerTime()
 end
