@@ -91,6 +91,10 @@ function GLT:CHAT_MSG_LOOT(...)
   if string.len(player) >= 1 then
     local isRaid, instanceMapID, _ = GLT.checkInstance()
     if isRaid and quality > GLTOptions.LootThreshold then
+      GLT.PrintDebugMessage(
+        "isRaid: " .. tostring(isRaid) .. " instanceMapID: " .. instanceMapID .. "Quality: " .. quality,
+        Statics.DebugModules["Events"]
+      )
       GLT.logLootDrop(player, itemLink, quality, instanceMapID, GLT.lastBoss)
       GLT.PrintDebugMessage(
         player .. " Looted: " .. itemLink .. " of " .. Statics.ItemQuality[quality],
@@ -109,7 +113,7 @@ function GLT:COMBAT_LOG_EVENT_UNFILTERED(...)
   if combatEvent == "UNIT_DIED" then
     --print(CombatLogGetCurrentEventInfo())
     local bossID
-    local localBossName = destName
+    --local localBossName = destName
     local unitType, _, _, instanceID, zoneID, ID = strsplit("-", destGUID) --[Unit type]-0-[server ID]-[instance ID]-[zone UID]-[ID]-[Spawn UID]
     if (unitType == "Creature") or (unitType == "Vehicle") then
       bossID = tonumber(ID)

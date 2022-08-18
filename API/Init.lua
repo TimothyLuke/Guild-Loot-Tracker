@@ -68,7 +68,7 @@ end
 function GLT.split(source, delimiters)
   local elements = {}
   local pattern = "([^" .. delimiters .. "]+)"
-  string.gsub(
+  local _ = string.gsub(
     source,
     pattern,
     function(value)

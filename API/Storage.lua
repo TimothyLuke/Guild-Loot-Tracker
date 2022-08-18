@@ -22,22 +22,35 @@ function GLT.logLootDrop(player, itemLink, quality, instanceID, bossID)
 end
 
 function GLT.recordLootDrop(raidIndex, lootRecord)
-    local index = lootRecord["instanceID"] + "-" + lootRecord["player"] + "-" + lootRecord["itemLink"]
+    print(raidIndex)
+    print(lootRecord)
+    local index = lootRecord["instanceID"] .. "-" .. lootRecord["player"] .. "-" .. lootRecord["itemLink"]
     GLTRaidLibrary[raidIndex]["loot"][index] = lootRecord
     GLTRaidLibrary[GLT.findRaidIndex(raidIndex)]["lastUpdated"] = GetServerTime()
 end
 
 function GLT.checkInstance()
-    local name, type, difficultyIndex, difficultyName, maxPlayers, dynamicDifficulty, isDynamic, instanceMapId, lfgID =
-        GetInstanceInfo()
-    local isRaid = (type == "raid") and true or false
+    local name,
+        instanceType,
+        difficultyIndex,
+        difficultyName,
+        maxPlayers,
+        dynamicDifficulty,
+        isDynamic,
+        instanceMapId,
+        lfgID = GetInstanceInfo()
+    local isRaid = (instanceType == "raid") and true or false
     -- if isRaid then
     --     if not Statics.RaidZones[instanceMapId] then
     --         isRaid = false
     --     end
     -- end
+    GLT.PrintDebugMessage(
+        "isRaid: " .. tostring(isRaid) .. " GLT.includeGroup" .. tostring(GLT.includeGroup) .. " type:" .. instanceType,
+        Statics.DebugModules["Storage"]
+    )
     if GLT.includeGroup then
-        if type == "party" or type == "raid" then
+        if instanceType == "party" or instanceType == "raid" then
             isRaid = true
         end
     end
@@ -45,7 +58,7 @@ function GLT.checkInstance()
 end
 
 function GLT.ManageRaid()
-    local isRaid, instanceMapId, type, maxPlayers, name = GLT.checkInstance()
+    local isRaid, instanceMapId, _, _, _ = GLT.checkInstance()
     if GLT.ActiveRaid and isRaid then
         return GLT.ActiveRaid
     elseif GLT.ActiveRaid and not isRaid then
@@ -56,7 +69,7 @@ function GLT.ManageRaid()
 end
 
 function GLT.CloseRaid(raidIndex)
-    print("GLT Raid Index", raidIndex)
+    GLT.PrintDebugMessage("GLT Raid Index: " .. raidIndex, Statics.DebugModules["Storage"])
     GLTRaidLibrary[raidIndex]["endDate"] = GetServerTime()
     GLT.sendCloseRaid(raidIndex)
     local activeRaid = GLTRaidLibrary[GLT.findRaidIndex(GLT.ActiveRaid)]
