@@ -7,6 +7,7 @@ function GLT.logLootDrop(player, itemLink, quality, instanceID, bossID)
     if not Statics.Encounters[bossID] then
         bossID = 0
     end
+    local itemName = string.match(itemLink, "item[%-?%d:]+")
 
     local lootRecord = {
         ["timestamp"] = GetServerTime(),
@@ -14,19 +15,22 @@ function GLT.logLootDrop(player, itemLink, quality, instanceID, bossID)
         ["player"] = player,
         ["itemLink"] = itemLink,
         ["quality"] = quality,
-        ["bossID"] = bossID
+        ["bossID"] = bossID,
+        ["itemName"] = itemName
     }
-
+    if GLT.isEmpty(GLT.ActiveRaid) then
+        GLT.ManageRaid()
+    end
+    GLT.PrintDebugMessage("Active Raid: " .. GLT.ActiveRaid, Statics.DebugModules["Storage"])
     GLT.recordLootDrop(GLTRaidLibrary[GLT.ActiveRaid]["id"], lootRecord)
     GLT.broadcastLootDrop(GLTRaidLibrary[GLT.ActiveRaid]["id"], lootRecord)
 end
 
 function GLT.recordLootDrop(raidIndex, lootRecord)
-    print(raidIndex)
-    print(lootRecord)
-    local index = lootRecord["instanceID"] .. "-" .. lootRecord["player"] .. "-" .. lootRecord["itemLink"]
-    GLTRaidLibrary[raidIndex]["loot"][index] = lootRecord
-    GLTRaidLibrary[GLT.findRaidIndex(raidIndex)]["lastUpdated"] = GetServerTime()
+    local lootIndex = lootRecord["instanceID"] .. "-" .. lootRecord["player"] .. "-" .. lootRecord["itemName"]
+    GLT.PrintDebugMessage("lootIndex: " .. lootIndex, Statics.DebugModules["Storage"])
+    GLTRaidLibrary[raidIndex].loot[lootIndex] = lootRecord
+    GLTRaidLibrary[raidIndex]["lastUpdated"] = GetServerTime()
 end
 
 function GLT.checkInstance()
@@ -46,10 +50,12 @@ function GLT.checkInstance()
     --     end
     -- end
     GLT.PrintDebugMessage(
-        "isRaid: " .. tostring(isRaid) .. " GLT.includeGroup" .. tostring(GLT.includeGroup) .. " type:" .. instanceType,
+        "isRaid: " ..
+            tostring(isRaid) ..
+                " GLTOptions.includeGroup: " .. tostring(GLTOptions.includeGroup) .. " type:" .. instanceType,
         Statics.DebugModules["Storage"]
     )
-    if GLT.includeGroup then
+    if GLTOptions.includeGroup then
         if instanceType == "party" or instanceType == "raid" then
             isRaid = true
         end
@@ -82,7 +88,7 @@ function GLT.getCurrentRaidMembers()
     local RaidMembers = {}
     for i = 1, 40, 1 do
         local name, rank, subgroup, level, class, fileName, zone, online, isDead, role, isML = GetRaidRosterInfo(i)
-        if level and level > 0 then
+        if level and level > 1 then
             table.insert(
                 RaidMembers,
                 {
