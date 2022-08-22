@@ -14,53 +14,6 @@ Statics.StringFormatEscapes = {
 
 Statics.GLTPrefix = "|cffff00FFGLT:|r "
 
-Statics.CleanStrings = {
-    [1] = "/console Sound_EnableSFX 0%;",
-    [2] = "/console Sound_EnableSFX 1%;",
-    [3] = "/script UIErrorsFrame:Hide%(%)%;",
-    [4] = "/run UIErrorsFrame:Clear%(%)%;",
-    [5] = "/script UIErrorsFrame:Clear%(%)%;",
-    [6] = "/run UIErrorsFrame:Hide%(%)%;",
-    [7] = "/console Sound_EnableErrorSpeech 1",
-    [8] = "/console Sound_EnableErrorSpeech 0",
-    [11] = "/console Sound_EnableSFX 0",
-    [12] = "/console Sound_EnableSFX 1",
-    [13] = "/script UIErrorsFrame:Hide%(%)",
-    [14] = "/run UIErrorsFrame:Clear%(%)",
-    [15] = "/script UIErrorsFrame:Clear%(%)",
-    [16] = "/run UIErrorsFrame:Hide%(%)",
-    [17] = "/console Sound_EnableErrorSpeech 1%;",
-    [18] = "/console Sound_EnableErrorSpeech 0%;",
-    [19] = [[""]],
-    [20] = "/stopmacro [@playertarget, noexists]",
-    -- [30] = "/use 2",
-    -- [31] = "/use [combat] 11",
-    -- [32] = "/use [combat] 12",
-    -- [33] = "/use [combat] 13",
-    -- [34] = "/use [combat] 14",
-    -- [35] = "/use 11",
-    -- [36] = "/use 12",
-    -- [37] = "/use 13",
-    -- [38] = "/use 14",
-    -- [39] = "/Use [combat] 11",
-    -- [40] = "/Use [combat] 12",
-    -- [41] = "/Use [combat] 13",
-    -- [42] = "/Use [combat] 14",
-    -- [43] = "/use [combat]11",
-    -- [44] = "/use [combat]12",
-    -- [45] = "/use [combat]13",
-    -- [46] = "/use [combat]14",
-    -- [47] = "/use [combat]2",
-    -- [48] = "/use [combat] 2",
-    -- [49] = "/use [combat]5",
-    -- [50] = "/use [combat] 5",
-    -- [51] = "/use [combat]1",
-    -- [52] = "/use [combat] 1",
-    -- [53] = "/use 1",
-    -- [54] = "/use 5",
-    [101] = "\n\n"
-}
-
 Statics.CommPrefix = "GLT"
 Statics.ItemQuality = {
     [0] = L["Grey"],
@@ -90,17 +43,6 @@ Statics.DebugModules = {
     ["GUI"] = "GUI",
     ["Export"] = "Export"
 }
-
--- Statics.RaidZones = {
---     [249] = true, -- Onyxia's Lair
--- 	[409] = true, -- Molten Core
--- 	[469] = true, -- Blackwing Lair
--- 	[509] = true, -- Ruins of Ahn'Qiraj
---     [531] = true, -- Temple of Ahn'Qiraj
---     [533] = true, -- Naxxramas
--- 	-- Need ZG's Zone
---     [859] = true, -- Guessing
--- }
 
 Statics.Encounters = {
     -------------------------------------------------------------------------------

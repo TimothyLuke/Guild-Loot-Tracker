@@ -172,9 +172,11 @@ function GLT.checkForUnknownRaids(list, sender)
 end
 
 function GLT.FindRaidIndex(raidId)
+    GLT.PrintDebugMessage("Looking for raidId: " .. raidId, Statics.DebugModules["Events"])
     local set = {}
     for k, v in ipairs(GLTRaidLibrary) do
         if v.id == raidId then
+            GLT.PrintDebugMessage("Found id: " .. k, Statics.DebugModules["Events"])
             return k
         end
     end
